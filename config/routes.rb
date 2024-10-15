@@ -11,10 +11,10 @@ scope module: :young do
      }
 end
 
-  resources :young_users, only: [:index, :show, :edit]
+ 
   resources :wisdom_posts, only: [:index, :show, :new, :edit]
   root to: 'homes#top'
   get 'homes/about'
-
+ resources :young_users, only: [:index, :show, :edit]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -12,6 +12,18 @@
 
   <body>
     <headder>
+      <% if young_user_signed_in? %>
+        <li>
+          <%= link_to "ログアウト", destroy_young_user_session_path, method: :delete %>
+        </li>
+      <% else %>
+        <li>
+          <%= link_to "新規登録", new_young_user_registration_path %>
+        </li>
+        <li>
+          <%= link_to "ログイン", new_young_user_session_path %>
+        </li>
+      <% end %>
       <%= link_to "about", homes_about_path %>
       <%= link_to "Wisdom", wisdom_posts_path %>
       <%= link_to "Users", young_users_path %>
