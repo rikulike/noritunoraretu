@@ -12,7 +12,7 @@ scope module: :young do
 end
 
  
-  resources :wisdom_posts, only: [:index, :show, :new, :edit, :create]
+  resources :wisdom_posts, only: [:index, :show, :new, :edit, :create, :destroy, :update]
   root to: 'homes#top'
   get 'homes/about'
  resources :young_users, only: [:index, :show, :edit]

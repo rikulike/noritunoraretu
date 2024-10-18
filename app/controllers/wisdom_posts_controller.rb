@@ -11,14 +11,28 @@ class WisdomPostsController < ApplicationController
   end
 
   def index
+    @wisdom_posts= WisdomPost.all
   end
 
   def show
+    @wisdom_post = WisdomPost.find(params[:id])
   end
 
   def edit
+    @wisdom_post = WisdomPost.find(params[:id])
   end
 
+  def update
+    wisdom_post= WisdomPost.find(params[:id])
+    wisdom_post.update(wisdom_post_params)
+    redirect_to wisdom_post_path(wisdom_post.id)
+  end 
+  
+  def destroy
+    wisdom_post= WisdomPost.find(params[:id])
+    wisdom_post.destroy
+    redirect_to wisdom_posts_path
+  end
 
 
 

@@ -1,2 +1,12 @@
-<h1>WisdomPosts#index</h1>
-<p>Find me in app/views/wisdom_posts/index.html.erb</p>
+<% @wisdom_posts.each do |wisdom_post| %>
+  <div>
+    <p>タイトル</p>
+    <span>
+      <%= link_to wisdom_post_path(wisdom_post.id) do %>
+        <%= wisdom_post.title %>
+      <% end %>
+    </span>
+    <p>本文<%= wisdom_post.body %></p>
+    <P>作成者<%= wisdom_post.young_user.name %></P>
+  </div>
+<% end %>

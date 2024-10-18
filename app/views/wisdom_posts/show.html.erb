@@ -1,2 +1,11 @@
-<h1>WisdomPosts#show</h1>
-<p>Find me in app/views/wisdom_posts/show.html.erb</p>
+<h2>タイトル</h2>
+<p><%= @wisdom_post.title %></p>
+<h2>本文</h2>
+<p><%= @wisdom_post.body %></p>
+<h2>作成者</h2>
+<p><%= @wisdom_post.young_user.name %></p>
+<h2>投稿日時</h2>
+<p><%= @wisdom_post.created_at.strftime('%y/%m/%d') %></p>
+<% if @wisdom_post.young_user === current_young_user %>
+  <%= link_to "編集", edit_wisdom_post_path(@wisdom_post) %>
+<% end %>

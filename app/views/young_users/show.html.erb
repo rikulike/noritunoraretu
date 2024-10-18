@@ -1,2 +1,16 @@
-<h1>YoungUsers#show</h1>
-<p>Find me in app/views/young_users/show.html.erb</p>
+<h4>ユーザーネーム</h4>
+<%= @young_user.name %>
+
+<% @wisdom_posts.each do |wisdom_post| %>
+<div>
+  <p>タイトル</p>
+   <%= link_to wisdom_post_path(wisdom_post.id) do %>
+     <%= wisdom_post.title %>
+   <% end %>
+  <p>本文</p>
+  <%= wisdom_post.body %>
+  <p>投稿日時</p>
+  <%= wisdom_post.created_at.strftime('%y/%m/%d') %>
+</div>
+<% end %>
+
