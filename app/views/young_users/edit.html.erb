@@ -1,2 +1,11 @@
-<h1>YoungUsers#edit</h1>
-<p>Find me in app/views/young_users/edit.html.erb</p>
+<h2>プロフィール編集</h2>
+<%= form_with model: @young_user do |f| %>
+  
+  <h4>名前</h4>
+  <%= f.text_field :name %>
+  
+  <h4>自己紹介</h4>
+  <%= f.text_area :introduction %>
+  
+  <%= f.submit "変更を保存" %>
+<% end %>

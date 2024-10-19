@@ -1,1 +1,12 @@
-hhh
+<% @young_users.each do |young_user| %>
+  <div>
+    <p>名前</p>
+    <span>
+      <%= link_to young_user_path(young_user.id) do %>
+       <%= young_user.name %>
+      <% end %>
+    </span>
+    <p>自己紹介</p>
+    <%= young_user.introduction %>
+  </div>
+<% end %>
