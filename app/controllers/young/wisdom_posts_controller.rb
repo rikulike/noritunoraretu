@@ -1,4 +1,4 @@
-class WisdomPostsController < ApplicationController
+class Young::WisdomPostsController < ApplicationController
   def new
     @wisdom_post= WisdomPost.new
   end
@@ -11,11 +11,13 @@ class WisdomPostsController < ApplicationController
   end
 
   def index
+    @young_user= current_young_user
     @wisdom_posts= WisdomPost.all
   end
 
   def show
-    @wisdom_post = WisdomPost.find(params[:id])
+    @wisdom_post= WisdomPost.find(params[:id])
+    @young_user= @wisdom_post.young_user
   end
 
   def edit

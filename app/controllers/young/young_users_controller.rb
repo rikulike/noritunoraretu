@@ -1,4 +1,4 @@
-class YoungUsersController < ApplicationController
+class Young::YoungUsersController < ApplicationController
 
   def show
     @young_user= YoungUser.find(params[:id])
@@ -16,6 +16,7 @@ class YoungUsersController < ApplicationController
   end
 
   def index
+    @young_user= current_young_user
     @young_users= YoungUser.all
   end
 

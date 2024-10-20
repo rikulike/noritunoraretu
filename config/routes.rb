@@ -9,12 +9,15 @@ scope module: :young do
     sessions: 'young/sessions',
     unlocks: 'young/unlocks'
      }
+     
+     resources :wisdom_posts, only: [:index, :show, :new, :edit, :create, :destroy, :update]
+     resources :young_users, only: [:index, :show, :edit, :update]
 end
 
 
-  resources :wisdom_posts, only: [:index, :show, :new, :edit, :create, :destroy, :update]
+  
   root to: 'homes#top'
   get 'homes/about'
- resources :young_users, only: [:index, :show, :edit, :update]
+ 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
