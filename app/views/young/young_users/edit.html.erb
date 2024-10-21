@@ -1,5 +1,7 @@
 <h2>プロフィール編集</h2>
 <%= form_with model: @young_user do |f| %>
+
+<%= f.file_field :profile_image, accept: "image/*" %>
   
   <h4>名前</h4>
   <%= f.text_field :name %>

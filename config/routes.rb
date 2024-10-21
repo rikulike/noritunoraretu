@@ -10,7 +10,7 @@ scope module: :young do
     unlocks: 'young/unlocks'
      }
      
-     resources :wisdom_posts, only: [:index, :show, :new, :edit, :create, :destroy, :update]
+     resources :wisdom_posts, only: [:index, :show, :edit, :create, :destroy, :update]
      resources :young_users, only: [:index, :show, :edit, :update]
 end
 

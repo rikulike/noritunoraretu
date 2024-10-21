@@ -3,6 +3,7 @@ class Young::YoungUsersController < ApplicationController
   def show
     @young_user= YoungUser.find(params[:id])
     @wisdom_posts= @young_user.wisdom_posts
+    @wisdom_post_new= WisdomPost.new
   end
 
   def edit
@@ -18,6 +19,7 @@ class Young::YoungUsersController < ApplicationController
   def index
     @young_user= current_young_user
     @young_users= YoungUser.all
+    @wisdom_post_new= WisdomPost.new
   end
 
 
@@ -25,7 +27,8 @@ class Young::YoungUsersController < ApplicationController
   private
 
   def young_user_params
-    params.require(:young_user).permit(:name, :introduction)
-
+    params.require(:young_user).permit(:name, :introduction, :profile_image)
   end
+  
+  
 end
