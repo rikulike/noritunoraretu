@@ -1,15 +1,43 @@
-<%= render 'young/young_users/young_user', young_user: @young_user %>
-<%= render 'new', wisdom_post: @wisdom_post_new %>
+<div class= "container">
+  <div class= "row">
+    <div class= "col-md-3">
+      <%= render 'young/young_users/young_user', young_user: @young_user %>
+      <%= render 'new', wisdom_post: @wisdom_post_new %>
+    </div>
+    <div class= "col-md-8 offset-md-1">
+      <h2>投稿詳細</h2>
+      <table class= "table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Body</th>
+            <th>Author</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <%= @wisdom_post.title %>
+            </td>
+            <td>
+              <%= @wisdom_post.body %>
+            </td>
+            <td>
+              <%= @wisdom_post.young_user.name %>
+            </td>
+            <td>
+              <p><%= @wisdom_post.created_at.strftime('%y/%m/%d') %></p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <% if @wisdom_post.young_user === current_young_user %>
+        <%= link_to "編集", edit_wisdom_post_path(@wisdom_post) %>
+      <% end %>
+    </div>
+  </div>
+</div>
 
 
-<h2>タイトル</h2>
-<p><%= @wisdom_post.title %></p>
-<h2>本文</h2>
-<p><%= @wisdom_post.body %></p>
-<h2>作成者</h2>
-<p><%= @wisdom_post.young_user.name %></p>
-<h2>投稿日時</h2>
-<p><%= @wisdom_post.created_at.strftime('%y/%m/%d') %></p>
-<% if @wisdom_post.young_user === current_young_user %>
-  <%= link_to "編集", edit_wisdom_post_path(@wisdom_post) %>
-<% end %>
+

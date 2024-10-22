@@ -1,17 +1,38 @@
-
-
-<%= render 'young/young_users/young_user', young_user: @young_user %>
-<%= render 'new', wisdom_post: @wisdom_post_new %>
-
-<% @wisdom_posts.each do |wisdom_post| %>
-  <div>
-    <p>タイトル</p>
-    <span>
-      <%= link_to wisdom_post_path(wisdom_post.id) do %>
-        <%= wisdom_post.title %>
-      <% end %>
-    </span>
-    <p>本文<%= wisdom_post.body %></p>
-    <P>作成者<%= wisdom_post.young_user.name %></P>
+<div class= "container px-5 px-sm-0">
+  <div class= "row">
+    <div class= "col-md-3">
+      <%= render 'young/young_users/young_user', young_user: @young_user %>
+      <%= render 'new', wisdom_post: @wisdom_post_new %> 
+    </div>
+    <div class= "col-md-8 offset-md-1">
+      <h1>投稿一覧</h1>
+      <table class= "table table-hover table-inverse">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Body</th>
+            
+            <th>author</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @wisdom_posts.each do |wisdom_post| %>
+            <tr>
+              <td>
+                <%= link_to wisdom_post_path(wisdom_post.id) do %>
+                  <%= wisdom_post.title %>
+                <% end %>
+              </td>
+              <td><%= wisdom_post.body %></td>
+              <td><%= wisdom_post.young_user.name %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
-<% end %>
+</div>
+
+
+
+

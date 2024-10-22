@@ -1,16 +1,29 @@
-
-<%= render 'young_user', young_user: @young_user %>
-<%= render 'young/wisdom_posts/new', wisdom_post: @wisdom_post_new %>
-<% @wisdom_posts.each do |wisdom_post| %>
-<div>
-  <p>タイトル</p>
-   <%= link_to wisdom_post_path(wisdom_post.id) do %>
-     <%= wisdom_post.title %>
-   <% end %>
-  <p>本文</p>
-  <%= wisdom_post.body %>
-  <p>投稿日時</p>
-  <%= wisdom_post.created_at.strftime('%y/%m/%d') %>
+<div class= "container">
+  <div class= "row">
+    <div class= "col-md-3">
+      <%= render 'young_user', young_user: @young_user %>
+      <%= render 'young/wisdom_posts/new', wisdom_post: @wisdom_post_new %> 
+    </div>
+    <div class= "col-md-8 offset-md-1">
+      <h2>User投稿一覧</h2>
+      <% @wisdom_posts.each do |wisdom_post| %>
+        <table class= "table">
+          <tbody>
+            <tr>
+              <td>
+                <%= link_to wisdom_post_path(wisdom_post.id) do %>
+                  <%= wisdom_post.title %>
+                <% end %>
+              </td>
+              <td><%= wisdom_post.body %></td>
+              <td><%= wisdom_post.created_at.strftime('%y/%m/%d') %></td>
+            </tr>
+          </tbody>
+        </table>
+      <% end %>
+    </div>
+  </div>
 </div>
-<% end %>
+
+
 
