@@ -1,8 +1,16 @@
+<% if @wisdom_post_new.errors.any? %>
+  <%= @wisdom_post_new.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @wisdom_post_new.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
 <div class= "container px-5 px-sm-0">
   <div class= "row">
     <div class= "col-md-3">
       <%= render 'young/young_users/young_user', young_user: @young_user %>
-      <%= render 'new', wisdom_post: @wisdom_post_new %> 
+      <%= render 'new', wisdom_post: @wisdom_post_new %>
     </div>
     <div class= "col-md-8 offset-md-1">
       <h1>投稿一覧</h1>
@@ -11,7 +19,6 @@
           <tr>
             <th>Title</th>
             <th>Body</th>
-            
             <th>author</th>
           </tr>
         </thead>
@@ -24,7 +31,11 @@
                 <% end %>
               </td>
               <td><%= wisdom_post.body %></td>
-              <td><%= wisdom_post.young_user.name %></td>
+              <td>
+                <%= link_to young_user_path(wisdom_post.young_user.id) do %>
+                  <%= wisdom_post.young_user.name %>
+                <% end %>
+              </td>
             </tr>
           <% end %>
         </tbody>

@@ -1,5 +1,5 @@
 class Young::YoungUsersController < ApplicationController
-
+  before_action :is_matching_login_young_user, only: [:edit, :update]
   def show
     @young_user= YoungUser.find(params[:id])
     @wisdom_posts= @young_user.wisdom_posts
@@ -12,8 +12,11 @@ class Young::YoungUsersController < ApplicationController
 
   def update
     @young_user= YoungUser.find(params[:id])
-    @young_user.update(young_user_params)
-    redirect_to young_user_path(@young_user.id)
+    if @young_user.update(young_user_params)
+      redirect_to young_user_path(@young_user.id)
+    else
+      render :edit
+    end
   end
 
   def index
@@ -30,5 +33,11 @@ class Young::YoungUsersController < ApplicationController
     params.require(:young_user).permit(:name, :introduction, :profile_image)
   end
   
-  
+  def is_matching_login_young_user
+    young_user =YoungUser.find(params[:id])
+    unless young_user.id == current_young_user.id
+      redirect_to wisdom_posts_path
+    end 
+  end
+
 end

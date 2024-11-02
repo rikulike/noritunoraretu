@@ -1,18 +1,26 @@
 class Young::WisdomPostsController < ApplicationController
-
+  before_action :is_wisdom_post_author, only: [:edit, :update]
 
   def create
-    @wisdom_post= WisdomPost.new(wisdom_post_params)
-    @wisdom_post.young_user_id= current_young_user.id
-    @wisdom_post.save
-    redirect_to wisdom_posts_path
+    @wisdom_post_new= WisdomPost.new(wisdom_post_params)
+    @wisdom_post_new.young_user_id= current_young_user.id
+    if @wisdom_post_new.save
+      redirect_to wisdom_posts_path
+    else
+       @young_user= current_young_user
+       @wisdom_posts= WisdomPost.all
+      render :index
+    end
+
   end
 
   def index
     @young_user= current_young_user
     @wisdom_posts= WisdomPost.all
     @wisdom_post_new= WisdomPost.new
+
   end
+
 
   def show
     @wisdom_post= WisdomPost.find(params[:id])
@@ -25,11 +33,14 @@ class Young::WisdomPostsController < ApplicationController
   end
 
   def update
-    wisdom_post= WisdomPost.find(params[:id])
-    wisdom_post.update(wisdom_post_params)
-    redirect_to wisdom_post_path(wisdom_post.id)
-  end 
-  
+    @wisdom_post= WisdomPost.find(params[:id])
+    if @wisdom_post.update(wisdom_post_params)
+      redirect_to wisdom_post_path(@wisdom_post.id)
+    else
+      render :edit
+    end
+  end
+
   def destroy
     wisdom_post= WisdomPost.find(params[:id])
     wisdom_post.destroy
@@ -40,6 +51,13 @@ class Young::WisdomPostsController < ApplicationController
 
 
   private
+  
+  def is_wisdom_post_author
+    wisdom_post= WisdomPost.find(params[:id])
+    unless wisdom_post.young_user.id == current_young_user.id
+      redirect_to wisdom_posts_path
+    end 
+  end 
 
   def wisdom_post_params
     params.require(:wisdom_post).permit(:title, :body, :caption)
