@@ -9,6 +9,12 @@ class Young::YoungUsersController < ApplicationController
   def edit
     @young_user= YoungUser.find(params[:id])
   end
+  
+  def destroy
+    @young_user= YoungUser.find(params[:id])
+    @young_user.destroy
+    redirect_to root_path, notice: '退会に成功しました'
+  end 
 
   def update
     @young_user= YoungUser.find(params[:id])

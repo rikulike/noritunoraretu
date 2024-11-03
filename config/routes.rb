@@ -11,7 +11,7 @@ scope module: :young do
      }
      
      resources :wisdom_posts, only: [:index, :show, :edit, :create, :destroy, :update]
-     resources :young_users, only: [:index, :show, :edit, :update]
+     resources :young_users, only: [:index, :show, :edit, :update, :destroy]
 end
 
 
