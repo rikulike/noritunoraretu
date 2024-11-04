@@ -1,5 +1,6 @@
-class YoungUsers::YoungUsersController < ApplicationController
+class Young::YoungUsersController < ApplicationController
   before_action :is_matching_login_young_user, only: [:edit, :update]
+  before_action :ensure_guest_young_user, only: [:edit, :update]
   def show
     @young_user= YoungUser.find(params[:id])
     @wisdom_posts= @young_user.wisdom_posts
@@ -9,12 +10,12 @@ class YoungUsers::YoungUsersController < ApplicationController
   def edit
     @young_user= YoungUser.find(params[:id])
   end
-  
+
   def destroy
     @young_user= YoungUser.find(params[:id])
     @young_user.destroy
     redirect_to root_path, notice: '退会に成功しました'
-  end 
+  end
 
   def update
     @young_user= YoungUser.find(params[:id])
@@ -38,12 +39,20 @@ class YoungUsers::YoungUsersController < ApplicationController
   def young_user_params
     params.require(:young_user).permit(:name, :introduction, :profile_image)
   end
-  
+
   def is_matching_login_young_user
     young_user =YoungUser.find(params[:id])
     unless young_user.id == current_young_user.id
       redirect_to wisdom_posts_path
-    end 
+    end
   end
+
+  def ensure_guest_young_user
+    @young_user = YoungUser.find(params[:id])
+    if @young_user.email == "guest@example.com"
+      redirect_to young_user_path(current_young_user), notice: "ゲストユーザーはプロフィール編集画面へ移行できません"
+    end
+  end
+
 
 end

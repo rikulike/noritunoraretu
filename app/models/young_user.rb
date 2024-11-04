@@ -16,16 +16,18 @@ class YoungUser < ApplicationRecord
   end
 
   validates :name, presence: true
-  
+
   GUEST_YOUNG_USER_EMAIL= "guest@example.com"
-  
+
   def self.guest
     find_or_create_by!(email: GUEST_YOUNG_USER_EMAIL) do |young_user|
       young_user.password= SecureRandom.urlsafe_base64
       young_user.name= "guestuser"
     end
   end
-  
+
+
+
   def self.search_for(content, method)
     if method == 'perfect'
       YoungUser.where(name: content)

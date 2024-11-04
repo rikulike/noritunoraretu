@@ -1,8 +1,9 @@
+<div><%= flash[:notice] %></div>
 <div class= "container">
   <div class= "row">
     <div class= "col-md-3">
       <%= render 'young_user', young_user: @young_user %>
-      <%= render 'young_users/wisdom_posts/new', wisdom_post: @wisdom_post_new %> 
+      <%= render 'young/wisdom_posts/new', wisdom_post: @wisdom_post_new %> 
     </div>
     <div class= "col-md-8 offset-md-1">
       <h2>User投稿一覧</h2>

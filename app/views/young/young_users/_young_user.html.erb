@@ -5,7 +5,8 @@
 <h4>紹介文</h4>
 <%= young_user.introduction %>
 <div>
-  <% if young_user==current_young_user %>
+  <% if young_user==current_young_user && young_user.email != "guest@example.com" %>>
     <%= link_to "プロフィール編集", edit_young_user_path(current_young_user.id) %>
   <% end %>
+
 </div>
