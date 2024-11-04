@@ -1,0 +1,7 @@
+<% if @model == 'user' %>
+	<h3>YoungUsers search for "<%= @content %>"</h3>
+  <%= render 'young_users/index', young_users: @records %>
+<% elsif @model == 'post' %>
+	<h3>WisdomPost search for "<%= @content %>"</h3>
+  <%= render 'wisdom_posts/index', wisdom_posts: @records %>
+<% end %>

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Young::SessionsController < Devise::SessionsController
+class YoungUsers::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
@@ -24,4 +24,10 @@ class Young::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
+  def guest_sign_in
+    young_user= YoungUser.guest
+    sign_in young_user
+    redirect_to young_user_path(young_user), notice: "guestuserでログインしました"
+  end
+    
 end

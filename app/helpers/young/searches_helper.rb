@@ -1,0 +1,2 @@
+module Young::SearchesHelper
+end

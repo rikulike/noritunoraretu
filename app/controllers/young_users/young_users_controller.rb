@@ -1,4 +1,4 @@
-class Young::YoungUsersController < ApplicationController
+class YoungUsers::YoungUsersController < ApplicationController
   before_action :is_matching_login_young_user, only: [:edit, :update]
   def show
     @young_user= YoungUser.find(params[:id])
