@@ -26,6 +26,7 @@ class Young::WisdomPostsController < ApplicationController
     @wisdom_post= WisdomPost.find(params[:id])
     @young_user= @wisdom_post.young_user
     @wisdom_post_new= WisdomPost.new
+    @wisdom_post_comment= WisdomPostComment.new
   end
 
   def edit

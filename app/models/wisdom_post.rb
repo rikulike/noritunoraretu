@@ -1,6 +1,6 @@
 class WisdomPost < ApplicationRecord
-  belongs_to :young_user
-
+  belongs_to :young_user  
+  has_many :wisdom_post_comments, dependent: :destroy
   validates :title, presence: true
   validates :body, presence: true
   

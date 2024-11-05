@@ -3,7 +3,7 @@
   <div class= "row">
     <div class= "col-md-3">
       <%= render 'young_user', young_user: @young_user %>
-      <%= render 'young/wisdom_posts/new', wisdom_post: @wisdom_post_new %> 
+      <%= render 'young/wisdom_posts/new', wisdom_post: @wisdom_post_new %>
     </div>
     <div class= "col-md-8 offset-md-1">
       <h2>User投稿一覧</h2>
@@ -18,6 +18,7 @@
               </td>
               <td><%= wisdom_post.body %></td>
               <td><%= wisdom_post.created_at.strftime('%y/%m/%d') %></td>
+              <td><%= link_to "#{wisdom_post.wisdom_post_comments.count}コメント", wisdom_post_path(wisdom_post.id) %></td>
             </tr>
           </tbody>
         </table>

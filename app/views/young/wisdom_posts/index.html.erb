@@ -20,6 +20,7 @@
             <th>Title</th>
             <th>Body</th>
             <th>author</th>
+            <th>comment</th>
           </tr>
         </thead>
         <tbody>
@@ -35,6 +36,9 @@
                 <%= link_to young_user_path(wisdom_post.young_user.id) do %>
                   <%= wisdom_post.young_user.name %>
                 <% end %>
+              </td>
+              <td>
+                <%= link_to "#{wisdom_post.wisdom_post_comments.count}コメント",wisdom_post_path(wisdom_post.id) %>
               </td>
             </tr>
           <% end %>

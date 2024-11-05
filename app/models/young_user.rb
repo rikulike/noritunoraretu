@@ -6,6 +6,7 @@ class YoungUser < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :wisdom_posts, dependent: :destroy
+  has_many :wisdom_post_comments, dependent: :destroy
 
   def get_profile_image(width, height)
     unless profile_image.attached?

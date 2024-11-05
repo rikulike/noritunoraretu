@@ -35,6 +35,20 @@
       <% if @wisdom_post.young_user === current_young_user %>
         <%= link_to "編集", edit_wisdom_post_path(@wisdom_post) %>
       <% end %>
+      <div>
+        <p>コメント件数<%= @wisdom_post.wisdom_post_comments.count %></p>
+        <% @wisdom_post.wisdom_post_comments.each do |wisdom_post_comment| %>
+          <p><%= image_tag wisdom_post_comment.young_user.get_profile_image(100,100) %></p>
+          <%= wisdom_post_comment.young_user.name %>
+          <%= wisdom_post_comment.created_at.strftime('%Y/%m/%d') %><%= wisdom_post_comment.comment %>
+        <% end %>
+      </div>
+      <div>
+        <%= form_with model: [@wisdom_post,@wisdom_post_comment] do |f| %>
+          <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+          <%= f.submit "送信する" %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

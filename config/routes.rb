@@ -16,7 +16,9 @@ Rails.application.routes.draw do
     
     
   scope module: :young do
-    resources :wisdom_posts, only: [:index, :show, :edit, :create, :destroy, :update]
+    resources :wisdom_posts, only: [:index, :show, :edit, :create, :destroy, :update] do
+      resources :wisdom_post_comments, only: [:create]
+    end
     resources :young_users, only: [:index, :show, :edit, :update, :destroy]
     get '/search', to: 'searches#search'
   end
