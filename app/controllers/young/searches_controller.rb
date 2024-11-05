@@ -8,7 +8,7 @@ class Young::SearchesController < ApplicationController
     if @model == 'user'
       @records= YoungUser.search_for(@content, @method)
     else
-      @records= WisdomPost.search_for(@content,@method)
+      @records= WisdomPost.search_for(@content, @method)
     end
   end
 end

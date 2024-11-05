@@ -1,7 +1,27 @@
 <% if @model == 'user' %>
 	<h3>YoungUsers search for "<%= @content %>"</h3>
-  <%= render 'young_users/index', young_users: @records %>
-<% elsif @model == 'post' %>
+	<% @records.each do |young_user| %>
+    <%= link_to young_user_path(young_user.id) do %>
+      <%= young_user.name %>
+     <% end %>
+     <%= young_user.introduction %>
+     <%= young_user.wisdom_posts.count %>投稿
+  <% end %>
+<% else @model == 'post' %>
 	<h3>WisdomPost search for "<%= @content %>"</h3>
-  <%= render 'wisdom_posts/index', wisdom_posts: @records %>
+    <% @records.each do |wisdom_post| %>
+    　<tr>
+        <td>
+          <%= link_to wisdom_post_path(wisdom_post.id) do %>
+            <%= wisdom_post.title %>
+          <% end %>
+        </td>
+        <td><%= wisdom_post.body %></td>
+        <td>
+          <%= link_to young_user_path(wisdom_post.young_user.id) do %>
+            <%= wisdom_post.young_user.name %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
 <% end %>
