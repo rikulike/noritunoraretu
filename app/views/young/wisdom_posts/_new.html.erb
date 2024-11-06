@@ -1,5 +1,5 @@
 
-<% if @young_user.email == !"guest@example.com" %>
+<% unless @young_user.email == "guest@example.com" %>
   <h1>新規投稿</h1>
   <%= form_with model: wisdom_post do |f| %>
   <h4>タイトル</h4>
@@ -10,6 +10,4 @@
 
   <%= f.submit '投稿' %>
   <% end %>
-<% else %>
-  <h5>新規投稿はユーザー登録後に行えます</h5>
 <% end %>

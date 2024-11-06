@@ -1,0 +1,11 @@
+<h1> 全ユーザー一覧</h1>
+<ul>
+  <% @young_users.each do |young_user| %>
+  <li>
+    <%= link_to admin_young_user_path(young_user.id) do %>
+      <%= young_user.name %>
+    <% end %>
+    <%= link_to '削除', admin_young_user_path(young_user), method: :delete, data: { confirm: '本当に削除しますか？'} %>
+  </li>
+  <% end %>
+</ul>

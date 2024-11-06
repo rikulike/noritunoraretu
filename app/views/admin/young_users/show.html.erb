@@ -1,0 +1,19 @@
+<h5>名前</h5>
+<%= @young_user.name %>
+<h5>自己紹介</h5>
+<%= @young_user.introduction %>
+
+<h5>投稿一覧</h5>
+<% @wisdom_posts.each do |wisdom_post| %>
+  <h6>タイトル</h6>
+  <%= wisdom_post.title %>
+  <h6>本文</h6>
+  <%= wisdom_post.body %>
+  <%= link_to '削除', admin_wisdom_post_path(wisdom_post), method: :delete, data: {confirm: '本当に削除しますか'} %>
+<% end %>
+
+<h5>コメント一覧</h5>
+<% @wisdom_post_comments.each do |wisdom_post_comment| %>
+  <%= wisdom_post_comment.comment %>
+  <%= link_to '削除', admin_wisdom_post_comment_path(wisdom_post_comment), method: :delete, data: {confirm: '本当に削除しますか'} %>
+<% end %>
