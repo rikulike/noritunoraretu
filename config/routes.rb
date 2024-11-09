@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
 
   namespace :young do
-   resources :groups, only: [:new, :show, :index, :create, :destroy, :update, :edit]
+   resources :groups, only: [:new, :show, :index, :create, :destroy, :update, :edit] do
+     resource :group_young_users, only: [:create, :destroy] 
+   end
+   resources :group_users, only: [:create, :destroy]
   end
+  
   devise_for :admin, skip: [:registrations, :password], controllers: {
     sessions: 'admin/sessions'
   }

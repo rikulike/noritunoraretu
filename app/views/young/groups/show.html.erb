@@ -1,3 +1,10 @@
 <%=image_tag @group.get_group_image(100,100) %>
 <%= @group.name %>
 <%= @group.introduction %>
+<% if @group.is_owned_by?(current_young_user) %>
+  <%= link_to 'Edit', edit_young_group_path(@group) %>
+<% elsif @group.includes_young_user?(current_young_user) %>
+  <%= link_to 'Leave this group', young_group_group_young_users_path(@group), method: :delete %>
+<% else %>
+  <%= link_to 'Join this group', young_group_group_young_users_path(@group), method: :post %>
+<% end %>
