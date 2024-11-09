@@ -6,8 +6,5 @@
       <%= group.name %>
     <% end %>
     <%= group.introduction %>
-    <% if group.owner_id == current_young_user.id %>
-      <%= link_to "edit", edit_young_group_path(group) %>
-    <% end %>
   </div>
  <% end %>

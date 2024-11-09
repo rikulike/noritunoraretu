@@ -2,7 +2,7 @@
 <%= @group.name %>
 <%= @group.introduction %>
 <% if @group.is_owned_by?(current_young_user) %>
-  <%= link_to 'Edit', edit_young_group_path(@group) %>
+  <%= link_to 'Edit', edit_young_group_path(@group) %>  <%=link_to "Notice an Event", new_young_group_event_notice_path(@group) %>
 <% elsif @group.includes_young_user?(current_young_user) %>
   <%= link_to 'Leave this group', young_group_group_young_users_path(@group), method: :delete %>
 <% else %>

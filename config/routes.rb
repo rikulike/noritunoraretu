@@ -3,7 +3,10 @@ Rails.application.routes.draw do
   namespace :young do
    resources :groups, only: [:new, :show, :index, :create, :destroy, :update, :edit] do
      resource :group_young_users, only: [:create, :destroy] 
+     resources :event_notices, only:[:new, :create]
+     get "event_notices" => "event_notices#sent"
    end
+   
    resources :group_users, only: [:create, :destroy]
   end
   

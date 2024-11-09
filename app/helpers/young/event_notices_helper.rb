@@ -1,0 +1,2 @@
+module Young::EventNoticesHelper
+end
