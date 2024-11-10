@@ -5,7 +5,7 @@ class EventMailer < ApplicationMailer
     @title= event[:title]
     @body= event[:body]
     
-    @mail= EventMailer.new()
+   
     mail(
       from: ENV['MAIL_ADDRESS'],
       to: member.email,

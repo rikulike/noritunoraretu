@@ -6,12 +6,12 @@ class Young::EventNoticesController < ApplicationController
   
   def create 
     
-    @group= Group.find(params[:group_id])
+    group= Group.find(params[:group_id])
     @title= params[:title]
     @body= params[:body]
     
     event = {
-      :group => @group,
+      :group => group,
       :title => @title,
       :body => @body
     }
@@ -21,8 +21,6 @@ class Young::EventNoticesController < ApplicationController
     render :sent
   end 
   
-  def sent
-    redirect_to group_path(params[:group_id])
-  end 
+
   
 end
