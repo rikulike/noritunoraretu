@@ -42,6 +42,11 @@
                   <% end %>
                 </li>
                 <li>
+                  <%= link_to new_wisdom_post_path, class:"nav-link text-light" do %>
+                    <i class="fa-solid fa-plus"></i>New post
+                  <% end %>
+                </li>
+                <li>
                   <%= link_to young_users_path, class: "nav-link text-light" do %>
                     <i class="fa-solid fa-users "></i>Users
                   <% end %>
@@ -63,7 +68,6 @@
         </div>
       </nav>
     </headder>
-    <%= render 'young/searches/form' %>
     <%= yield %>
     <footer>
       <div class="container mt-5">

@@ -1,12 +1,29 @@
-<h1>グループ作成</h1>
-<%= form_with model: @group, url: young_groups_path do |f| %>
-  <h4>グループ名</h4>
-  <%= f.text_field :name %>
-  <h4>グループイメージ</h4>
-  <%= f.file_field :group_image, accept: "image/*" %>
-  
-  <h4>説明文</h4>
-  <%= f.text_area :introduction %>
-  
-  <%= f.submit "グループ作成" %>
-<% end %>
+
+
+
+<div class= "container">
+  <div class= "row">
+    <div class= "col-sm-12 col-md-8 col-lg-5 px-sm-0 mx-auto">
+      <h2>グループ編集画面</h2>
+        <%= form_with model: @group, url: young_groups_path do |f| %>
+        <div class= "form-group">
+          <label for= "group_image">グループ作成</label>
+          <div>
+            <%= f.file_field:group_image, accept: "image/*" %>
+          </div>
+          <label for= "group_name">グループ名</label>
+          <div>
+            <%= f.text_field :name %>
+          </div>
+          <label for= "group_introduction">グループ説明</label>
+          <div>
+             <%= f.text_area :introduction %>
+          </div>
+        </div>
+        <div>
+          <%= f.submit "作成", class: "btn btn-success form-group" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

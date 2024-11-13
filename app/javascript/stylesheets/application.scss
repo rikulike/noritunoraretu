@@ -1,1 +1,45 @@
 @use '~bootstrap/scss/bootstrap';
+.profile_image {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+}
+
+.side_bar_profile_image {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+}
+
+.comment_profile_image {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+}
+
+.comment_table{
+  border-bottom: 2px solid #000;
+
+}
+
+.comment_element{
+  border-bottom: 1px solid #999999;
+}
+
+.young_user_index_profile_image{
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+}
+
+
+.group_index_image{
+  height: 100%;
+  object-fit: cover;
+}
+
+.index_wisdom_post_image{
+  width: 100%;
+  height: 200px;
+  object-fit: cover
+}

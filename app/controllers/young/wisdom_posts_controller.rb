@@ -1,6 +1,12 @@
 class Young::WisdomPostsController < ApplicationController
   before_action :is_wisdom_post_author, only: [:edit, :update]
 
+
+
+    def new
+      @wisdom_post_new= WisdomPost.new
+    end 
+  
   def create
     @wisdom_post_new= WisdomPost.new(wisdom_post_params)
     @wisdom_post_new.young_user_id= current_young_user.id
@@ -25,7 +31,6 @@ class Young::WisdomPostsController < ApplicationController
   def show
     @wisdom_post= WisdomPost.find(params[:id])
     @young_user= @wisdom_post.young_user
-    @wisdom_post_new= WisdomPost.new
     @wisdom_post_comment= WisdomPostComment.new
   end
 
@@ -61,6 +66,6 @@ class Young::WisdomPostsController < ApplicationController
   end 
 
   def wisdom_post_params
-    params.require(:wisdom_post).permit(:title, :body, :caption)
+    params.require(:wisdom_post).permit(:title, :body, :caption, :wisdom_post_image)
   end
 end

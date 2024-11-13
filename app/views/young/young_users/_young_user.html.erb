@@ -1,12 +1,37 @@
-
-<%= image_tag young_user.get_profile_image(100,100) %>
-<h4>ユーザーネーム</h4>
-<%= young_user.name %>
-<h4>紹介文</h4>
-<%= young_user.introduction %>
-<div>
-  <% if young_user==current_young_user && young_user.email != "guest@example.com" %>>
-    <%= link_to "プロフィール編集", edit_young_user_path(current_young_user.id) %>
-  <% end %>
-
+<div class= "row">
+  <div class="col-12">
+  <div class= "row">
+    <div class= "col-4">
+      <%= image_tag young_user.get_profile_image(500,500), class: "side_bar_profile_image mt-3 rounded-circle"%>
+    </div>
+    <div class= "col-6 offset-2 d-flex align-items-center justify-content-center mt-3">
+      <h1><strong><%= young_user.name %></strong></h1>
+    </div>
+  </div>
+  <div class= "row">
+    <div class= "col-10 mt-2">
+       <h6><strong>紹介文</strong></h6>
+    </div>
+  </div>
+  <div class= "row">
+    <div class=" col-11 offset-1">
+      <%= young_user.introduction %>
+    </div>
+  </div>
+  <div class= "row ">
+      <% if young_user==current_young_user && young_user.email != "guest@example.com" %>
+        <%= link_to edit_young_user_path(current_young_user.id),class:"btn btn-outline-secondary btn-block" do %>
+          <i class="fa-solid fa-user-gear"></i>
+        <% end %>
+      <% end %> 
+  </div>
+  </div>
 </div>
+        
+    
+
+
+
+
+
+

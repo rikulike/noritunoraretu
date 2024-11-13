@@ -6,48 +6,44 @@
     <% end %>
   </ul>
 <% end %>
-<div class= "container px-5 px-sm-0">
-  <div class= "row">
-    <div class= "col-md-3">
-      <%= render 'young/young_users/young_user', young_user: @young_user %>
-      <%= render 'new', wisdom_post: @wisdom_post_new %>
-    </div>
-    <div class= "col-md-8 offset-md-1">
-      <h1>投稿一覧</h1>
-      <table class= "table table-hover table-inverse">
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Body</th>
-            <th>author</th>
-            <th>comment</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @wisdom_posts.each do |wisdom_post| %>
-            <tr>
-              <td>
-                <%= link_to wisdom_post_path(wisdom_post.id) do %>
-                  <%= wisdom_post.title %>
-                <% end %>
-              </td>
-              <td><%= wisdom_post.body %></td>
-              <td>
-                <%= link_to young_user_path(wisdom_post.young_user.id) do %>
-                  <%= wisdom_post.young_user.name %>
-                <% end %>
-              </td>
-              <td>
-                <%= link_to "#{wisdom_post.wisdom_post_comments.count}コメント",wisdom_post_path(wisdom_post.id) %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+<div class= "container pt-5">
+  <div class="row">
+    <div class= "col-5 mx-auto">
+      <%= render 'young/searches/form' %>
     </div>
   </div>
 </div>
-
-
-
+<div class="container py-5">
+  <div class= "row mt-5">
+    <% @wisdom_posts.each do |wisdom_post| %>
+    <div class="card col-md-3">
+      <%= link_to wisdom_post_path(wisdom_post.id) do %>
+      <div class= "row text-center">
+        <%= image_tag wisdom_post.get_wisdom_post_image(600,500), class: " index_wisdom_post_image"; %>
+      </div>
+      <% end %>
+      <div class="row">
+          <div class= "col-2 text-center">
+            <%= image_tag wisdom_post.young_user.get_profile_image(500,500), class: "profile_image mt-3 rounded-circle"; %>
+          </div>
+          <div class="col-9 offset-1 text-center">
+            <p class="card-title mt-2 ">
+              <%= link_to wisdom_post_path(wisdom_post.id), class: "text-dark" do %>
+                <h5><strong><i class="fa-solid fa-book-open"></i><span><%= wisdom_post.title %></span></strong></h5>
+              <% end %>
+            </p>
+            <p class="card-text"><%= truncate(wisdom_post.body, length: 40) %></p>
+            <span>
+              <%= link_to young_user_path(wisdom_post.young_user.id), class: "text-dark" do %>
+                <i class="fa-solid fa-user"></i><%= wisdom_post.young_user.name %>
+              <% end %>
+            </span>
+            <span><%= link_to "#{wisdom_post.wisdom_post_comments.count}コメント",wisdom_post_path(wisdom_post.id), class: "text-dark"%></span>
+            <div><%= wisdom_post.created_at.strftime('%y/%m/%d') %></div>
+          </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
 

@@ -1,40 +1,45 @@
-<div class= "container px-5 px-sm-0">
-  <div class= "row">
-    <div class= "col-md-3">
-      <%= render 'young_user', young_user: @young_user %>
-      <%= render 'young/wisdom_posts/new', wisdom_post: @wisdom_post_new %>
-    </div>
-    <div class= "col-md-8 offset-md-1">
-      <%= link_to "グループ作成", new_young_group_path %><%= link_to "グループ一覧", young_groups_path %>
-      <h1>ユーザー一覧</h1>
-      <table class= "table table-hover table-inverse">
-        <thead>
-          <tr>
-            <th>名前</th>
-            <th>自己紹介</th>
-            <th>投稿数</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @young_users.each do |young_user| %>
-            <tr>
-              <th>
-                <%= link_to young_user_path(young_user.id) do %>
-                  <%= young_user.name %>
-                <% end %>
-              </th>
-              <th>
-                <%= young_user.introduction %>
-              </th>
-              <th>
-                <%= young_user.wisdom_posts.count %>投稿
-              </th>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+<div class= "container">
+  <div class= "row mt-2">
+    <div class= "col-md-5 offset-md-7 btn-group" role="group" aria-label="Basic outlined example">
+      <button type="button" class="btn btn-outline-primary"><%= link_to "グループ作成", new_young_group_path %></button>
+      <button type="button" class="btn btn-outline-primary"><%= link_to "グループ一覧", young_groups_path %></button>
     </div>
   </div>
-</div>
+  <div class= "row">
+    <div class= "col-md-6 mx-auto mt-4">
+      <%= render 'young/searches/form' %>
+    </div>
+  </div>
+
+
+
+  <div class="row mt-5">
+    <% @young_users.each do |young_user| %>
+    
+      <div class="card mt-2 col-sm-6 col-md-4">
+        <div class= "row">
+          <div class= "col-12 text-center">
+            <%= image_tag young_user.get_profile_image(500,500),class: "young_user_index_profile_image rounded-circle  mt-3" %>
+          </div>
+        </div>
+          <div class="card-body ">
+            <h5 class="card-title text-center">
+              <%= link_to young_user_path(young_user) do %>
+                <%= young_user.name %>
+              <% end %>
+            </h5>
+            <p class="card-text young_user_index_introduction"><%= truncate(young_user.introduction, length: 30) %></p>
+          </div>
+          <div class= "card-footer">
+            <div class= "text-body-secondary"><%=young_user.wisdom_posts.count %>投稿</div>
+          </div>
+      </div>
+    
+    <% end %>
+  </div>
+
+
+
+
 
 

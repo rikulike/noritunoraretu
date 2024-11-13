@@ -2,55 +2,89 @@
   <div class= "row">
     <div class= "col-md-3">
       <%= render 'young/young_users/young_user', young_user: @young_user %>
-      <%= render 'new', wisdom_post: @wisdom_post_new %>
     </div>
     <div class= "col-md-8 offset-md-1">
-      <h2>投稿詳細</h2>
-      <table class= "table">
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Body</th>
-            <th>Author</th>
-            <th>Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <%= @wisdom_post.title %>
-            </td>
-            <td>
-              <%= @wisdom_post.body %>
-            </td>
-            <td>
-              <%= @wisdom_post.young_user.name %>
-            </td>
-            <td>
-              <p><%= @wisdom_post.created_at.strftime('%y/%m/%d') %></p>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <% if @wisdom_post.young_user === current_young_user %>
-        <%= link_to "編集", edit_wisdom_post_path(@wisdom_post) %>
-      <% end %>
-      <div>
-        <p>コメント件数<%= @wisdom_post.wisdom_post_comments.count %></p>
-        <% @wisdom_post.wisdom_post_comments.each do |wisdom_post_comment| %>
-          <p><%= image_tag wisdom_post_comment.young_user.get_profile_image(100,100) %></p>
-          <%= wisdom_post_comment.young_user.name %>
-          <%= wisdom_post_comment.created_at.strftime('%Y/%m/%d') %><%= wisdom_post_comment.comment %>
-        <% end %>
+      <div class= "row card w-70 mx-auto mt-4 shadow-lg">
+        <%= image_tag @wisdom_post.get_wisdom_post_image(1000, 1000), class: "card-img-top"; %>
+        <div class= "card-body">
+          <div class= "row">
+            <div class= "col-2">
+              <%= image_tag @wisdom_post.young_user.get_profile_image(500,500), class: "profile_image mt-3 rounded-circle"; %>
+            </div>
+            <div class= "col-10">
+              <p class= "card-title">
+                <strong><i class="fa-solid fa-book-open"></i><span class= "text-dark"><%= @wisdom_post.title %></span></strong>
+              </p>
+              <p class= "card-text"><%= @wisdom_post.body %></p>
+              <span>
+                <%= link_to young_user_path(@young_user.id), class: "text-dark" do %>
+                  <i class="fa-solid fa-user"></i><%= @young_user.name %>
+                <% end %>
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
-      <div>
-        <% unless current_young_user.email == "guest@example.com" %>
-          <%= form_with model: [@wisdom_post,@wisdom_post_comment] do |f| %>
-            <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
-            <%= f.submit "送信する" %>
+      <div class="row mt-4">
+        <div class= "col-5 mx-auto ">
+          <% if @wisdom_post.young_user === current_young_user %>
+            <%= link_to edit_wisdom_post_path(@wisdom_post), class:"btn btn-outline-info btn-block" do %>
+              <i class="fa-solid fa-pencil"></i>
+            <% end %>
           <% end %>
-        <% end %>
+        </div>
       </div>
+      <div class= "row">
+        <h5><strong>コメント<%= @wisdom_post.wisdom_post_comments.count %>件</strong></h5>
+      </div>
+      <div class= "row">
+        <div class= "col-12 row comment_table">
+          <div class= "col-2">
+            投稿者
+          </div>
+          <div class= "col-2">
+            名前
+          </div>
+          <div class= "col-6">
+            コメント
+          </div>
+          <div class= "col-2">
+            投稿日
+          </div>
+        </div>
+        <div class= "col-12 row ">
+          <% @wisdom_post.wisdom_post_comments.each do |wisdom_post_comment| %>
+            <div class= "col-12 row comment_element">
+              <div class= "col-2">
+                <%= link_to young_user_path(wisdom_post_comment.young_user_id) do %>
+                  <%= image_tag wisdom_post_comment.young_user.get_profile_image(500,500),class: "comment_profile_image mt-2 mb-2 rounded-circle" %>
+                <% end %>
+              </div>
+              <div class= "col-2 d-flex align-items-center justify-content-center mt-2 mb-2">
+                <%= wisdom_post_comment.young_user.name %>
+              </div>
+              <div class= "col-6 d-flex align-items-center justify-content-center mt-2 mb-2">
+                <%= wisdom_post_comment.comment %>
+              </div>
+              <div class= "col-2 d-flex align-items-center justify-content-center mt-2 mb-2">
+                <%= wisdom_post_comment.created_at.strftime('%Y/%m/%d') %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <div class= "row ">
+          <div class= "col-md-12 comment_post mx-auto">
+            <% unless current_young_user.email == "guest@example.com" %>
+              <%= form_with model: [@wisdom_post,@wisdom_post_comment] do |f| %>
+                <%= f.text_area :comment, rows: '5',cols:'70%', placeholder: "コメントをここに",class: "mt-2 mb-2" %>
+                <%= f.submit "送信する",class:"btn btn-outline-info btn-block"%>
+              <% end %>
+            <% end %>
+          </div>  
+        </div>
+      </div>
+      
+
     </div>
   </div>
 </div>

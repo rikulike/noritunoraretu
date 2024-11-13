@@ -1,17 +1,12 @@
-<% if @wisdom_post.errors.any? %>
-  <%= @wisdom_post.errors.count %>件のエラーが発生しました
-  <ul>
-    <% @wisdom_post.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
 
+<% if current_young_user.email == "guest@example.com" %>
+  <h1>新規投稿は会員登録後に行えます</h1>
+<% else %>
 <div class= "container">
   <div class= "row">
     <div class= "col-sm-12 col-md-8 col-lg-5 px-sm-0 mx-auto">
-      <h2>投稿編集画面</h2>
-      <%= form_with model: @wisdom_post do |f| %>
+      <h2>新規投稿</h2>
+      <%= form_with model: @wisdom_post_new do |f| %>
       <div class= "form-group">
         <label for= "wisdom_post_image">投稿イメージ</label>
         <div>
@@ -27,9 +22,10 @@
         </div>
       </div>
       <div>
-        <%= f.submit "変更を保存", class: "btn btn-success form-group" %>　
+        <%= f.submit "投稿", class: "btn btn-success form-group" %>　
       </div>
       <% end %>
     </div>
   </div>
 </div>
+<% end %>

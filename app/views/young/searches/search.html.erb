@@ -1,3 +1,5 @@
+
+
 <% if @model == 'user' %>
 	<h3>YoungUsers search for "<%= @content %>"</h3>
 	<% @records.each do |young_user| %>
@@ -7,21 +9,41 @@
      <%= young_user.introduction %>
      <%= young_user.wisdom_posts.count %>投稿
   <% end %>
+
 <% else @model == 'post' %>
-	<h3>WisdomPost search for "<%= @content %>"</h3>
+  <div class="card-list-container py-5">
+           <h3 class= "text-align-center">WisdomPost search for "<%= @content %>"</h3>
     <% @records.each do |wisdom_post| %>
-    　<tr>
-        <td>
-          <%= link_to wisdom_post_path(wisdom_post.id) do %>
-            <%= wisdom_post.title %>
-          <% end %>
-        </td>
-        <td><%= wisdom_post.body %></td>
-        <td>
-          <%= link_to young_user_path(wisdom_post.young_user.id) do %>
-            <%= wisdom_post.young_user.name %>
-          <% end %>
-        </td>
-      </tr>
+      <div class="card w-50 mx-auto mt-4 shadow-lg">
+        <%= link_to wisdom_post_path(wisdom_post.id) do %>
+          <%= image_tag wisdom_post.get_wisdom_post_image(600,500), class: "card-img-top"; %>
+        <% end %>
+        <div class="card-body">
+          <div class= "row">
+            <div class= "col-2">
+              <%= image_tag wisdom_post.young_user.get_profile_image(500,500), class: "profile_image mt-3 rounded-circle"; %>
+            </div>
+            <div class="col-10">
+              <p class="card-title">
+                <%= link_to wisdom_post_path(wisdom_post.id), class: "text-dark" do %>
+                  <strong><i class="fa-solid fa-book-open"></i><span><%= wisdom_post.title %></span></strong>
+                <% end %>
+              </p>
+              <p class="card-text"><%= wisdom_post.body %></p>
+              <span>
+                <%= link_to young_user_path(wisdom_post.young_user.id), class: "text-dark" do %>
+                  <i class="fa-solid fa-user"></i><%= wisdom_post.young_user.name %>
+                <% end %>
+              </span>
+              <span><%= link_to "#{wisdom_post.wisdom_post_comments.count}コメント",wisdom_post_path(wisdom_post.id), class: "text-dark"%></span>
+              <div><%= wisdom_post.created_at.strftime('%y/%m/%d') %></div>
+            </div>
+          </div>
+        </div>
+      </div>
     <% end %>
+  </div>
 <% end %>
+
+
+
