@@ -1,8 +1,8 @@
 <div class= "container">
   <div class= "row mt-2">
     <div class= "col-md-5 offset-md-7 btn-group" role="group" aria-label="Basic outlined example">
-      <button type="button" class="btn btn-outline-primary"><%= link_to "グループ作成", new_young_group_path %></button>
-      <button type="button" class="btn btn-outline-primary"><%= link_to "グループ一覧", young_groups_path %></button>
+      <%= link_to "グループ作成", new_young_group_path, class: "btn btn-outline-primary" %>
+      <%= link_to "グループ一覧", young_groups_path, class: "btn btn-outline-primary" %>
     </div>
   </div>
   <div class= "row">
@@ -37,7 +37,7 @@
     
     <% end %>
   </div>
-
+</div>
 
 
 

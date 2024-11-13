@@ -1,10 +1,36 @@
-<%=image_tag @group.get_group_image(100,100) %>
-<%= @group.name %>
-<%= @group.introduction %>
-<% if @group.is_owned_by?(current_young_user) %>
-  <%= link_to 'Edit', edit_young_group_path(@group) %>  <%=link_to "Notice an Event", new_young_group_event_notice_path(@group) %>
-<% elsif @group.includes_young_user?(current_young_user) %>
-  <%= link_to 'Leave this group', young_group_group_young_users_path(@group), method: :delete %>
-<% else %>
-  <%= link_to 'Join this group', young_group_group_young_users_path(@group), method: :post %>
-<% end %>
+
+ <div class="row no-gutters">
+  <div class="col-10 card mb-3 mx-auto">
+    <div class= "row">
+      <div class="col-md-4 ">
+        <%= image_tag @group.get_group_image(500,500), class: "card-img-top group_index_image" %>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">
+            <%= link_to young_group_path(@group) do %>
+              <%= @group.name %>
+            <% end %>
+          </h5>
+          <p class="card-text"><%= @group.introduction %></p>
+          <p class="card-text"><small class="text-muted"><%= @group.young_users.count %>人が参加中</small></p>
+        </div>
+        <div class= "row">
+          <div class= "col-4 offset-8">
+            <% if @group.is_owned_by?(current_young_user) %>
+              <%= link_to 'Edit', edit_young_group_path(@group), class:"text-light btn btn-info btn-sm btn-block guest_sign_in" %>  <%=link_to "Notice an Event", new_young_group_event_notice_path(@group), class: "text-light btn btn-success btn-sm btn-block sign_in" %>
+            <% elsif @group.includes_young_user?(current_young_user) %>
+              <%= link_to 'Leave this group', young_group_group_young_users_path(@group), class: "text-light btn btn-danger btn-sm btn-block guest_sign_in", method: :delete %>
+            <% else %>
+              <%= link_to 'Join this group', young_group_group_young_users_path(@group), class: "text-light btn btn-warning btn-sm btn-block md-3 sign_up", method: :post %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+      

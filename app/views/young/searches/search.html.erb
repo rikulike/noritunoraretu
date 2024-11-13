@@ -1,15 +1,35 @@
 
 
 <% if @model == 'user' %>
-	<h3>YoungUsers search for "<%= @content %>"</h3>
-	<% @records.each do |young_user| %>
-    <%= link_to young_user_path(young_user.id) do %>
-      <%= young_user.name %>
-     <% end %>
-     <%= young_user.introduction %>
-     <%= young_user.wisdom_posts.count %>投稿
-  <% end %>
-
+  <div class="row mt-5">
+    <div class= "col-8 offset-2">
+      <div class= "row">
+        <h3>YoungUsers search for "<%= @content %>"</h3>
+      </div>
+      <div class= "row">
+        <% @records.each do |young_user| %>
+          <div class="card mt-2 col-sm-6 col-md-4">
+            <div class= "row">
+              <div class= "col-12 text-center">
+                <%= image_tag young_user.get_profile_image(500,500),class: "young_user_index_profile_image rounded-circle  mt-3" %>
+              </div>
+            </div>
+            <div class="card-body ">
+              <h5 class="card-title text-center">
+                <%= link_to young_user_path(young_user) do %>
+                  <%= young_user.name %>
+                <% end %>
+              </h5>
+              <p class="card-text young_user_index_introduction"><%= truncate(young_user.introduction, length: 30) %></p>
+            </div>
+            <div class= "card-footer">
+              <div class= "text-body-secondary"><%=young_user.wisdom_posts.count %>投稿</div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 <% else @model == 'post' %>
   <div class="card-list-container py-5">
            <h3 class= "text-align-center">WisdomPost search for "<%= @content %>"</h3>

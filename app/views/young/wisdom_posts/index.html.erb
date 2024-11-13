@@ -16,33 +16,41 @@
 <div class="container py-5">
   <div class= "row mt-5">
     <% @wisdom_posts.each do |wisdom_post| %>
-    <div class="card col-md-3">
-      <%= link_to wisdom_post_path(wisdom_post.id) do %>
-      <div class= "row text-center">
-        <%= image_tag wisdom_post.get_wisdom_post_image(600,500), class: " index_wisdom_post_image"; %>
-      </div>
-      <% end %>
-      <div class="row">
-          <div class= "col-2 text-center">
+      <div class="card col-md-3">
+        <%= link_to wisdom_post_path(wisdom_post.id) do %>
+        <div class= "row text-center ">
+          <%= image_tag wisdom_post.get_wisdom_post_image(600,500), class: " index_wisdom_post_image"; %>
+        </div>
+        <% end %>
+        <div class="row ">
+          <div class= "col-4 text-center wisdom_post_index_card_content_top">
             <%= image_tag wisdom_post.young_user.get_profile_image(500,500), class: "profile_image mt-3 rounded-circle"; %>
+            <div>
+              <%= link_to young_user_path(wisdom_post.young_user.id), class: "index_wisdom_post_young_user_name text-dark" do %>
+                <i class="fa-solid fa-user"></i><%= wisdom_post.young_user.name %>
+              <% end %>
+            </div>
           </div>
-          <div class="col-9 offset-1 text-center">
-            <p class="card-title mt-2 ">
+          <div class="col-8 text-center">
+            <p class="card-title mt-4 ">
               <%= link_to wisdom_post_path(wisdom_post.id), class: "text-dark" do %>
                 <h5><strong><i class="fa-solid fa-book-open"></i><span><%= wisdom_post.title %></span></strong></h5>
               <% end %>
             </p>
-            <p class="card-text"><%= truncate(wisdom_post.body, length: 40) %></p>
-            <span>
-              <%= link_to young_user_path(wisdom_post.young_user.id), class: "text-dark" do %>
-                <i class="fa-solid fa-user"></i><%= wisdom_post.young_user.name %>
-              <% end %>
-            </span>
-            <span><%= link_to "#{wisdom_post.wisdom_post_comments.count}コメント",wisdom_post_path(wisdom_post.id), class: "text-dark"%></span>
-            <div><%= wisdom_post.created_at.strftime('%y/%m/%d') %></div>
+            <p>
+              <%= truncate(wisdom_post.body, length: 40) %>
+            </p>
           </div>
+        </div>
+        <div class= "row">
+          <div class= "col-4">
+            <%= wisdom_post.created_at.strftime('%y/%m/%d') %>
+          </div>
+          <div class="col-8 ">
+            <%= link_to "#{wisdom_post.wisdom_post_comments.count}コメント",wisdom_post_path(wisdom_post.id), class: "text-dark"%></span>
+          </div>
+        </div>
       </div>
-    </div>
     <% end %>
   </div>
 </div>
