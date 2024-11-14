@@ -1,6 +1,6 @@
 
  <div class="row no-gutters">
-  <div class="col-10 card mb-3 mx-auto">
+  <div class="col-10 card mb-3 mx-auto mt-5">
     <div class= "row">
       <div class="col-md-4 ">
         <%= image_tag @group.get_group_image(500,500), class: "card-img-top group_index_image" %>
@@ -16,7 +16,7 @@
           <p class="card-text"><small class="text-muted"><%= @group.young_users.count %>人が参加中</small></p>
         </div>
         <div class= "row">
-          <div class= "col-4 offset-8">
+          <div class= "col-4 offset-4">
             <% if @group.is_owned_by?(current_young_user) %>
               <%= link_to 'Edit', edit_young_group_path(@group), class:"text-light btn btn-info btn-sm btn-block guest_sign_in" %>  <%=link_to "Notice an Event", new_young_group_event_notice_path(@group), class: "text-light btn btn-success btn-sm btn-block sign_in" %>
             <% elsif @group.includes_young_user?(current_young_user) %>

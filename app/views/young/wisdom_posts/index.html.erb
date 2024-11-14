@@ -9,7 +9,7 @@
 <div class= "container pt-5">
   <div class="row">
     <div class= "col-5 mx-auto">
-      <%= render 'young/searches/form' %>
+      <%= render 'young/searches/form', model_name: "wisdom_post" %>
     </div>
   </div>
 </div>
@@ -19,7 +19,7 @@
       <div class="card col-md-3">
         <%= link_to wisdom_post_path(wisdom_post.id) do %>
         <div class= "row text-center ">
-          <%= image_tag wisdom_post.get_wisdom_post_image(600,500), class: " index_wisdom_post_image"; %>
+          <%= image_tag wisdom_post.get_wisdom_post_image(600,500), class: "index_wisdom_post_image"; %>
         </div>
         <% end %>
         <div class="row ">

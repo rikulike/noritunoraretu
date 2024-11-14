@@ -1,13 +1,16 @@
 <div class= "container">
-  <div class= "row mt-2">
-    <div class= "col-md-5 offset-md-7 btn-group" role="group" aria-label="Basic outlined example">
-      <%= link_to "グループ作成", new_young_group_path, class: "btn btn-outline-primary" %>
-      <%= link_to "グループ一覧", young_groups_path, class: "btn btn-outline-primary" %>
+  <% unless current_young_user.email == "guest@example.com" %>
+    <div class= "row mt-2">
+      <div class= "col-md-5 offset-md-7 btn-group" role="group" aria-label="Basic outlined example">
+        <%= link_to "グループ作成", new_young_group_path, class: "btn btn-outline-primary" %>
+        <%= link_to "グループ一覧", young_groups_path, class: "btn btn-outline-primary" %>
+      </div>
     </div>
-  </div>
+  <% end %>
+
   <div class= "row">
     <div class= "col-md-6 mx-auto mt-4">
-      <%= render 'young/searches/form' %>
+      <%= render 'young/searches/form', model_name: "user" %>
     </div>
   </div>
 
@@ -15,7 +18,7 @@
 
   <div class="row mt-5">
     <% @young_users.each do |young_user| %>
-    
+
       <div class="card mt-2 col-sm-6 col-md-4">
         <div class= "row">
           <div class= "col-12 text-center">
@@ -34,7 +37,7 @@
             <div class= "text-body-secondary"><%=young_user.wisdom_posts.count %>投稿</div>
           </div>
       </div>
-    
+
     <% end %>
   </div>
 </div>

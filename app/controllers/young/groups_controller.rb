@@ -1,5 +1,6 @@
 class Young::GroupsController < ApplicationController
   before_action :is_matching_login_young_user, only:[:edit, :update]
+  before_action :is_not_guest_young_user
   def new
     @group= Group.new
   end
@@ -37,7 +38,7 @@ class Young::GroupsController < ApplicationController
     group= Group.find(params[:id])
     group.destroy
     redirect_to young_groups_path
-  end 
+  end
 
 
 
@@ -46,14 +47,21 @@ class Young::GroupsController < ApplicationController
   def group_params
     params.require(:group).permit(:name, :introduction, :group_image)
   end
-  
+
   def is_matching_login_young_user
     group= Group.find(params[:id])
     unless group.owner_id == current_young_user.id
       redirect_to young_groups_path
-    end 
-  end 
-    
+    end
+  end
+
+  def is_not_guest_young_user
+    young_user = current_young_user
+    unless young_user.email != "guest@example.com"
+      redirect_to young_users_path
+    end
+  end
+
 end
 
 

@@ -64,6 +64,8 @@ class Young::WisdomPostsController < ApplicationController
       redirect_to wisdom_posts_path
     end 
   end 
+  
+
 
   def wisdom_post_params
     params.require(:wisdom_post).permit(:title, :body, :caption, :wisdom_post_image)
