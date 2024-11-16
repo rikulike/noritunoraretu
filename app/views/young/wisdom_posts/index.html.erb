@@ -14,9 +14,12 @@
   </div>
 </div>
 <div class="container py-5">
+  <div class= "row">
+    <h3>Wisdom Post一覧ページ</h3>
+  </div>
   <div class= "row mt-5">
     <% @wisdom_posts.each do |wisdom_post| %>
-      <div class="card col-md-3">
+      <div class="card col-lg-3">
         <%= link_to wisdom_post_path(wisdom_post.id) do %>
         <div class= "row text-center ">
           <%= image_tag wisdom_post.get_wisdom_post_image(600,500), class: "index_wisdom_post_image"; %>
@@ -31,15 +34,15 @@
               <% end %>
             </div>
           </div>
-          <div class="col-8 text-center">
+          <div class="col-8 text-center ">
             <p class="card-title mt-4 ">
               <%= link_to wisdom_post_path(wisdom_post.id), class: "text-dark" do %>
                 <h5><strong><i class="fa-solid fa-book-open"></i><span><%= wisdom_post.title %></span></strong></h5>
               <% end %>
             </p>
-            <p>
-              <%= truncate(wisdom_post.body, length: 40) %>
-            </p>
+              <p>
+                <%= truncate(wisdom_post.body, length: 35) %>
+              </p>
           </div>
         </div>
         <div class= "row">
