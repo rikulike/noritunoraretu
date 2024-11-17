@@ -8,8 +8,12 @@ class Young::GroupsController < ApplicationController
   def create
     @group= Group.new(group_params)
     @group.owner_id= current_young_user.id
-    @group.save
-    redirect_to young_groups_path
+    if @group.save
+      redirect_to young_groups_path
+    else 
+      render :new
+    end 
+    
   end
 
 
@@ -30,8 +34,11 @@ class Young::GroupsController < ApplicationController
 
   def update
     @group= Group.find(params[:id])
-    @group.update(group_params)
-    redirect_to young_groups_path
+    if @group.update(group_params)
+      redirect_to young_group_path(@group)
+    else 
+      render :edit
+    end 
   end
 
   def destroy
