@@ -2,13 +2,13 @@ Rails.application.routes.draw do
 
   namespace :young do
    resources :groups, only: [:new, :show, :index, :create, :destroy, :update, :edit] do
-     resource :group_young_users, only: [:create, :destroy] 
+     resource :group_young_users, only: [:create, :destroy]
      resources :event_notices, only:[:new, :create]
    end
-   
+
    resources :group_users, only: [:create, :destroy]
   end
-  
+
   devise_for :admin, skip: [:registrations, :password], controllers: {
     sessions: 'admin/sessions'
   }
@@ -34,10 +34,10 @@ Rails.application.routes.draw do
     post "young_users/guest_sign_in", to: "young/sessions#guest_sign_in"
   end
 
-
   scope module: :young do
+    get "wisdom_posts/:id/wisdom_post_comments", to: "wisdom_posts#show"
     resources :wisdom_posts, only: [:index, :show, :edit, :create, :destroy, :update, :new] do
-      resources :wisdom_post_comments, only: [:create]
+      resources :wisdom_post_comments, only: [:create, :destroy]
     end
     resources :young_users, only: [:index, :show, :edit, :update, :destroy]
     get '/search', to: 'searches#search'
