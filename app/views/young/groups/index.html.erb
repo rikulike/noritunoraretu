@@ -1,8 +1,11 @@
 <div class= "card-list-container">
   <div class= "col-8 mx-auto mt-4">
     <h2 class="row">
-      <div class= "col-4 offset-1">
+      <div class= "col-lg-4 offset-lg-1 col-md-6">
         グループ一覧
+      </div>
+      <div class= "col-lg-3 offset-lg-3 col-md-5 btn-group" role="group" aria-label="Basic outlined example">
+        <%= link_to "＋グループ作成", new_young_group_path, class: "btn btn-outline-primary" %>
       </div>
     </h2>
     <div class="row no-gutters">
@@ -10,7 +13,9 @@
         <div class="col-10 card mb-3 mx-auto">
           <div class= "row">
             <div class="col-md-4 ">
-              <%= image_tag group.get_group_image(500,500), class: "card-img-top group_index_image" %>
+              <%= link_to young_group_path(group) do %>
+                <%= image_tag group.get_group_image(1000,1000), class: "card-img-top group_index_image" %>
+              <% end %>
             </div>
             <div class="col-md-8">
               <div class="card-body">
@@ -42,5 +47,5 @@
 
 
 
-  
+
 
