@@ -1,0 +1,10 @@
+<div>
+  <%= link_to "前のページへ", admin_dashboards_path %>
+</div>
+<% @groups.each do |group| %>
+  <h5>グループ名</h5>
+  <%= group.name %>
+  <h6>グループ説明</h6>
+  <%= group.introduction %>
+  <%= link_to "削除", admin_group_path(group), method: :delete %>
+<% end %>
