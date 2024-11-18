@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+
+  
   namespace :young do
    resources :groups, only: [:new, :show, :index, :create, :destroy, :update, :edit] do
      resource :group_young_users, only: [:create, :destroy]
@@ -18,6 +20,7 @@ Rails.application.routes.draw do
     resources :young_users, only: [:destroy, :show]
     resources :wisdom_posts, only: [:destroy]
     resources :wisdom_post_comments, only: [:destroy]
+    resources :groups, only: [:index, :destroy]
   end
 
   devise_for :young_users, controllers:{
