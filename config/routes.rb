@@ -7,7 +7,6 @@ Rails.application.routes.draw do
      resource :group_young_users, only: [:create, :destroy]
      resources :event_notices, only:[:new, :create]
    end
-
    resources :group_users, only: [:create, :destroy]
   end
 
@@ -30,7 +29,6 @@ Rails.application.routes.draw do
     sessions: 'young/sessions',
     unlocks: 'young/unlocks'
      }
-
 
 
    devise_scope :young_user do
