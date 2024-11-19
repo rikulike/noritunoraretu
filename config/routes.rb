@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-
-
-  
-  
   namespace :young do
    resources :groups, only: [:new, :show, :index, :create, :destroy, :update, :edit] do
      resource :group_young_users, only: [:create, :destroy]
@@ -11,10 +7,10 @@ Rails.application.routes.draw do
    resources :group_users, only: [:create, :destroy]
    get 'homes/about'
   end
-  
+
   namespace :senior do
     get 'homes/about'
-    
+
   end
 
   devise_for :admin, skip: [:registrations, :password], controllers: {
@@ -61,7 +57,7 @@ Rails.application.routes.draw do
     registrations: 'senior/registrations',
     sessions: 'senior/sessions',
     unlocks: 'senior/unlocks'
-     }
+  }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
 
