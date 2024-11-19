@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+
   namespace :young do
    resources :groups, only: [:new, :show, :index, :create, :destroy, :update, :edit] do
      resource :group_young_users, only: [:create, :destroy]
@@ -10,7 +12,7 @@ Rails.application.routes.draw do
 
   namespace :senior do
     get 'homes/about'
-
+    resources :notiru_posts, only:[:new, :show, :index, :edit, :create]
   end
 
   devise_for :admin, skip: [:registrations, :password], controllers: {

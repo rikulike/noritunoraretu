@@ -1,0 +1,2 @@
+module Senior::NorituPostsHelper
+end
