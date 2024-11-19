@@ -1,12 +1,12 @@
 class Senior::NorituPostsController < ApplicationController
-  
-  
+
+
   def new
     @notiru_post= NorituPost.new
   end
-  
+
   def create
-  end 
+  end
 
   def show
   end
