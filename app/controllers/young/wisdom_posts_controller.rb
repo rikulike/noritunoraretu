@@ -1,6 +1,6 @@
 class Young::WisdomPostsController < ApplicationController
   before_action :is_wisdom_post_author, only: [:edit, :update]
-
+  before_action :authenticate_young_user!
 
 
     def new

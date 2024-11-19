@@ -1,5 +1,5 @@
 class Young::WisdomPostCommentsController < ApplicationController
-
+  before_action :authenticate_young_user!
   def create
     @wisdom_post= WisdomPost.find(params[:wisdom_post_id])
     @comment= current_young_user.wisdom_post_comments.new(wisdom_post_comment_params)

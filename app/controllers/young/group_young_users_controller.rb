@@ -1,5 +1,5 @@
 class Young::GroupYoungUsersController < ApplicationController
-  
+  before_action :authenticate_young_user!
   def create
     group_young_user = current_young_user.group_young_users.new(group_id: params[:group_id])
     group_young_user.save

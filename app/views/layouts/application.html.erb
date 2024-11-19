@@ -89,6 +89,14 @@
         </div>
       </nav>
     </headder>
+    
+    <% if senior_user_signed_in? %>
+      <div class= "text-right">
+        <%= link_to 'ログアウト', destroy_senior_user_session_path, method: :delete %>
+      </div>
+    <% end %>
+    
+    
     <%= yield %>
     <footer>
       <div class="container mt-5">
