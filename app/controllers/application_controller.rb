@@ -1,13 +1,13 @@
 class ApplicationController < ActionController::Base
-  before_action :authenticate_young_user!, except: [:top], unless: :admin_controller?
+  before_action :authenticate_young_user!||:authenticate_senior_user!, except: [:top], unless: :admin_controller?
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def after_young_user_sign_in_path_for(resources)
-    homes_about_path
+    young_homes_about
   end
 
   def after_senior_user_sign_in_path_for(resources)
-    root_path
+    senior_homes_about
   end 
   
   private

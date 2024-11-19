@@ -9,6 +9,12 @@ Rails.application.routes.draw do
      resources :event_notices, only:[:new, :create]
    end
    resources :group_users, only: [:create, :destroy]
+   get 'homes/about'
+  end
+  
+  namespace :senior do
+    get 'homes/about'
+    
   end
 
   devise_for :admin, skip: [:registrations, :password], controllers: {
@@ -58,3 +64,6 @@ Rails.application.routes.draw do
      }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
+
+
+
