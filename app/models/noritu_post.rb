@@ -1,0 +1,2 @@
+class NorituPost < ApplicationRecord
+end

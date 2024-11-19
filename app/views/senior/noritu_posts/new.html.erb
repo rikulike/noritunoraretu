@@ -1,0 +1,9 @@
+<%= form_with model: @noritu_post, senior_notiru_posts_path, method: :post do |f| %>
+  <h4>日時</h4>
+  <%= f.datetime_field :datetime %>
+  <h4>現在地</h4>
+  <%= f.text_area :current_location %>
+  <h3>↓</h3>
+  <h4>目的地</h4>
+  <%= f.text_area :destination %>
+<% end %>

@@ -2,6 +2,10 @@ Rails.application.routes.draw do
 
 
   
+  namespace :senior do
+    resources :notiru_posts, only:[:new, :show, :index, :edit, :create]
+
+  end
   namespace :young do
    resources :groups, only: [:new, :show, :index, :create, :destroy, :update, :edit] do
      resource :group_young_users, only: [:create, :destroy]
