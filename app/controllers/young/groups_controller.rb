@@ -1,6 +1,8 @@
 class Young::GroupsController < ApplicationController
   before_action :is_matching_login_young_user, only:[:edit, :update]
   before_action :is_not_guest_young_user
+  before_action :authenticate_young_user!
+  
   def new
     @group= Group.new
   end
