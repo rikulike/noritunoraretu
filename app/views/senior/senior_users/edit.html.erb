@@ -1,2 +1,27 @@
-<h1>Senior::SeniorUsers#edit</h1>
-<p>Find me in app/views/senior/senior_users/edit.html.erb</p>
+<% if @senior_user.errors.any? %>
+  <%= @senior_user.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @senior_user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+
+
+<%= form_with model: @senior_user, url: senior_senior_user_path(@senior_user), method: :patch  do |f| %>
+  <div>
+    <%= f.file_field :profile_image, accept: "image/*" %>
+  </div>
+  <div>名前</div>
+  <div>
+    <%=f.text_field :name %>
+  </div>
+  <div>紹介文</div>
+  <div>
+    <%=f.text_area :introduction %>
+  </div>
+  <div>
+    <%= f.submit "変更を保存" %>
+  </div>
+<% end %>

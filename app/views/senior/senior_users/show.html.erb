@@ -1,2 +1,7 @@
-<h1>Senior::SeniorUsers#show</h1>
-<p>Find me in app/views/senior/senior_users/show.html.erb</p>
+<div><%= image_tag @senior_user.get_profile_image(500,500) %></div>
+<div><%= @senior_user.name %></div>
+<div><%= @senior_user.introduction %></div>
+<% if current_senior_user == @senior_user %>
+  <%= link_to "編集", edit_senior_senior_user_path(@senior_user) %>
+  <%= link_to "退会", senior_senior_user_path(@senior_user), method: :delete %>
+<% end %>
