@@ -10,9 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 2024_11_19_073746) do
-
+ActiveRecord::Schema.define(version: 2024_11_19_171701) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -69,15 +67,14 @@ ActiveRecord::Schema.define(version: 2024_11_19_073746) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-
   create_table "noritu_posts", force: :cascade do |t|
     t.datetime "datetime"
     t.string "current_location"
     t.string "destination"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "senior_user_id"
   end
-
 
   create_table "permits", force: :cascade do |t|
     t.integer "young_user_id"
