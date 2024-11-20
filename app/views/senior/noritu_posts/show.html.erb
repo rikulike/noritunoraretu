@@ -1,2 +1,10 @@
-<h1>Senior::NorituPosts#show</h1>
-<p>Find me in app/views/senior/noritu_posts/show.html.erb</p>
+<h4>タイトル</h4>
+<%=@noritu_post.title %>
+<h4>説明文</h4>
+<%=@noritu_post.body %>
+<h4>日時</h4>
+<%= @noritu_post.datetime %>
+<h4>出発地点</h4>
+<%= @noritu_post.current_location %>
+<h4>目的地</h4>
+<%= @noritu_post.destination %>

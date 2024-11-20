@@ -1,2 +1,13 @@
-<h1>Senior::NorituPosts#index</h1>
-<p>Find me in app/views/senior/noritu_posts/index.html.erb</p>
+<h3>のりつ投稿一覧</h3>
+<% @noritu_posts.each do |noritu_post| %>
+  <h4>タイトル</h4>
+  <%= link_to senior_noritu_post_path(noritu_post) do %>
+    <%= noritu_post.title %>
+  <% end %>
+  <h4>日時</h4>
+  <%= noritu_post.datetime %>
+  <h4>出発地点</h4>
+  <%= noritu_post.current_location %>
+  <h4>目的地</h4>
+  <%= noritu_post.destination %>
+<% end %>

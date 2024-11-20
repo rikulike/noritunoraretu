@@ -1,4 +1,17 @@
+<% if @noritu_post.errors.any? %>
+  <%= @noritu_post.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @noritu_post.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <%= form_with model: @noritu_post, url: "/senior/noritu_posts", method: :post do |f| %>
+  <h4>タイトル</h4>
+  <%= f.text_field :title %>
+  <h4>説明文</h4>
+  <%= f.text_area :body %>
   <h4>日時</h4>
   <%= f.datetime_field :datetime %>
   <h4>現在地</h4>
