@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
 
   namespace :senior do
-    
     resources :noritu_posts, only:[:new, :show, :index, :edit, :create]
-    resources :senior_users, only:[:show, :edit]
+    resources :senior_users, only:[:show, :edit, :update, :destroy]
     get 'homes/about'
   end
 
