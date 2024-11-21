@@ -1,4 +1,11 @@
-
+<% if @wisdom_post_new.errors.any? %>
+  <%= @wisdom_post_new.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @wisdom_post_new.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
 <% if current_young_user.email == "guest@example.com" %>
 <div class= "container text-center mt-5">
   <h1>新規投稿は会員登録後に行えます</h1>
