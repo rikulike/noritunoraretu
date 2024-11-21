@@ -1,5 +1,5 @@
 class Young::WisdomPostsController < ApplicationController
-  before_action :is_wisdom_post_author, only: [:edit, :update]
+  before_action :is_wisdom_post_author, only: [:edit, :update, :destroy]
   before_action :authenticate_young_user!
 
 
@@ -13,9 +13,7 @@ class Young::WisdomPostsController < ApplicationController
     if @wisdom_post_new.save
       redirect_to wisdom_posts_path
     else
-       @young_user= current_young_user
-       @wisdom_posts= WisdomPost.all
-      render :index
+      render :new
     end
 
   end

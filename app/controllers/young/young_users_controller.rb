@@ -1,5 +1,5 @@
 class Young::YoungUsersController < ApplicationController
-  before_action :is_matching_login_young_user, only: [:edit, :update]
+  before_action :is_matching_login_young_user, only: [:edit, :update, :destroy]
   before_action :ensure_guest_young_user, only: [:edit, :update]
   before_action :authenticate_young_user!
   

@@ -1,7 +1,7 @@
 class Senior::SeniorUsersController < ApplicationController
   layout 'senior'
   before_action :authenticate_senior_user!
-  before_action :is_matching_login_senior_user, only: [:edit, :update]
+  before_action :is_matching_login_senior_user, only: [:edit, :update, :destroy]
   
   
   def show

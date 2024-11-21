@@ -30,6 +30,7 @@
         <%= f.submit "変更を保存", class: "btn btn-success form-group" %>　
       </div>
       <% end %>
+      <%= link_to "削除", wisdom_post_path(@wisdom_post), method: :delete %>
     </div>
   </div>
 </div>

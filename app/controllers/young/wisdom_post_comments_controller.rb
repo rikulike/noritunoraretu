@@ -1,5 +1,6 @@
 class Young::WisdomPostCommentsController < ApplicationController
   before_action :authenticate_young_user!
+  before_action :is_comment_author, only: [:destroy]
   def create
     @wisdom_post= WisdomPost.find(params[:wisdom_post_id])
     @comment= current_young_user.wisdom_post_comments.new(wisdom_post_comment_params)
@@ -23,5 +24,13 @@ class Young::WisdomPostCommentsController < ApplicationController
   def wisdom_post_comment_params
     params.require(:wisdom_post_comment).permit(:comment)
   end
+  
+  def is_comment_author
+    wisdom_post_comment = WisdomPostComment.find(params[:id])
+    unless wisdom_post_comment.young_user == current_young_user
+      redirect_to wisdom_post_path(wisdom_post_comment.wisdom_post.id)
+    end 
+  end 
+  
 end
 

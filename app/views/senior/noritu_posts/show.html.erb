@@ -8,3 +8,6 @@
 <%= @noritu_post.current_location %>
 <h4>目的地</h4>
 <%= @noritu_post.destination %>
+<% if @noritu_post.senior_user == current_senior_user %>
+  <%= link_to "編集", edit_senior_noritu_post_path(@noritu_post.id) %>
+<% end %>
