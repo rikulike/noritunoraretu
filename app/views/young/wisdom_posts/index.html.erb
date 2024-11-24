@@ -1,6 +1,8 @@
 
 <div class= "container pt-5">
-  <%= link_to "のりつポストのindex", senior_noritu_posts_path %>
+  <% unless current_young_user.id == 3 %>
+    <%= link_to "のりつポストのindex", young_noritu_posts_path %>
+  <% end %>
   <div class="row">
     <div class= "col-5 mx-auto">
       <%= render 'young/searches/form', model_name: "wisdom_post" %>

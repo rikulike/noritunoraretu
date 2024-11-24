@@ -1,8 +1,7 @@
 class Senior::NorituPostsController < ApplicationController
   layout 'senior'
-  before_action :authenticate_senior_user!, except:[:show, :index]
-  before_action :check_logged_in, only: [:show, :index]
-  before_action :is_noritu_post_author, only: [:edit, :update, :destroy]
+  before_action :authenticate_senior_user!
+  before_action :is_noritu_post_author, only: [:edit, :update, :destroy, :show]
 
   def new
     @noritu_post= NorituPost.new
@@ -23,9 +22,7 @@ class Senior::NorituPostsController < ApplicationController
 
   end
 
-  def index
-    @noritu_posts= NorituPost.all
-  end
+
 
   def edit
     @noritu_post = NorituPost.find(params[:id])
@@ -46,6 +43,9 @@ class Senior::NorituPostsController < ApplicationController
     redirect_to senior_senior_user_path(current_senior_user)
   end
 
+
+
+
   private
 
   def noritu_post_params
@@ -59,10 +59,6 @@ class Senior::NorituPostsController < ApplicationController
     end
   end
 
-  def check_logged_in
-    unless young_user_signed_in? || senior_user_signed_in?
-      redirect_to root_path
-    end
-  end
+
 
 end

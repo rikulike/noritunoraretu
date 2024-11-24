@@ -1,11 +1,13 @@
 class Senior::SeniorUsersController < ApplicationController
   layout 'senior'
   before_action :authenticate_senior_user!
-  before_action :is_matching_login_senior_user, only: [:edit, :update, :destroy]
-  
-  
+  before_action :is_matching_login_senior_user, only: [:edit, :update, :destroy, :show]
+
+
   def show
     @senior_user = SeniorUser.find(params[:id])
+    @noritu_posts = NorituPost.where(senior_user_id: @senior_user.id)
+
   end
 
   def edit
@@ -16,16 +18,16 @@ class Senior::SeniorUsersController < ApplicationController
     @senior_user = SeniorUser.find(params[:id])
       if @senior_user.update(senior_user_params)
         redirect_to senior_senior_user_path(current_senior_user)
-      else 
+      else
         render :edit
-      end 
+      end
   end
-  
+
   def destroy
     @senior_user = SeniorUser.find(params[:id])
     @senior_user.destroy
     redirect_to root_path
-  end 
+  end
 
 
 

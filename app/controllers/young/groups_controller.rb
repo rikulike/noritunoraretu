@@ -64,12 +64,7 @@ class Young::GroupsController < ApplicationController
     end
   end
 
-  def is_not_guest_young_user
-    young_user = current_young_user
-    unless young_user.email != "guest@example.com"
-      redirect_to young_users_path
-    end
-  end
+
 
 end
 

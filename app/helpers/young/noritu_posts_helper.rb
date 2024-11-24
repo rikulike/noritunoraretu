@@ -1,0 +1,2 @@
+module Young::NorituPostsHelper
+end

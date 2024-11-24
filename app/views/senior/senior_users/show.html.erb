@@ -4,5 +4,17 @@
 <% if current_senior_user == @senior_user %>
   <%= link_to "編集", edit_senior_senior_user_path(@senior_user) %>
   <%= link_to "退会", senior_senior_user_path(@senior_user), method: :delete %>
-  <%= link_to "投稿一覧", senior_noritu_posts_path %>
+<% end %>
+<h3>マイのりつ投稿一覧</h3>
+<% @noritu_posts.each do |noritu_post| %>
+  <h4>タイトル</h4>
+  <%= link_to senior_noritu_post_path(noritu_post) do %>
+    <%= noritu_post.title %>
+  <% end %>
+  <h4>日時</h4>
+  <%= noritu_post.datetime %>
+  <h4>出発地点</h4>
+  <%= noritu_post.current_location %>
+  <h4>目的地</h4>
+  <%= noritu_post.destination %>
 <% end %>

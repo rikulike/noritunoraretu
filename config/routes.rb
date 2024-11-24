@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   namespace :senior do
-    resources :noritu_posts, only:[:new, :show, :index, :edit, :create, :update, :destroy] do 
+    resources :noritu_posts, only:[:new, :show, :edit, :create, :update, :destroy] do 
       resource :noritu_favorite, only: [:create, :destroy]
       end 
     resources :senior_users, only:[:show, :edit, :update, :destroy]
@@ -15,6 +15,7 @@ Rails.application.routes.draw do
    end
    resources :group_users, only: [:create, :destroy]
    get 'homes/about'
+   resources :noritu_posts, only: [:index, :show]
   end
 
 
