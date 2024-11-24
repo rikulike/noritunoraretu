@@ -11,3 +11,22 @@
 <% if @noritu_post.senior_user == current_senior_user %>
   <%= link_to "編集", edit_senior_noritu_post_path(@noritu_post.id) %>
 <% end %>
+
+<% if young_user_signed_in? && @noritu_post.favorited_by?(current_young_user) %>
+  <p>
+    <%= link_to senior_noritu_post_noritu_favorite_path(@noritu_post), method: :delete do %>
+      ⚫︎<%= @noritu_post.noritu_favorites.count %>いいね
+    <% end %>
+  </p>
+<% elsif current_senior_user == @noritu_post.senior_user %>
+  <%= @noritu_post.noritu_favorites.count %>いいね
+  <% @noritu_favorite_young_users.each do |young_user| %>
+    <%= young_user.name %>
+  <% end %>
+<% else %>
+  <p>
+    <%= link_to senior_noritu_post_noritu_favorite_path(@noritu_post), method: :post do %>
+      ◯<%= @noritu_post.noritu_favorites.count %>いいね
+    <% end %>
+  </p>
+<% end %>
