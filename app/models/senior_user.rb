@@ -5,6 +5,7 @@ class SeniorUser < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :noritu_posts, dependent: :destroy
+  has_many :rooms, dependent: :destroy
   validates :name, presence: true
   
   def get_profile_image(width, height)

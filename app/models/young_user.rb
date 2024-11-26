@@ -9,6 +9,7 @@ class YoungUser < ApplicationRecord
   has_many :wisdom_post_comments, dependent: :destroy
   has_many :group_young_users, dependent: :destroy
   has_many :noritu_favorites, dependent: :destroy
+  has_many :rooms, dependent: :destroy
 
   def get_profile_image(width, height)
     unless profile_image.attached?

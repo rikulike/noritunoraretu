@@ -1,0 +1,2 @@
+module Senior::YoungUsersHelper
+end
