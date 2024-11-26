@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_11_21_154725) do
+ActiveRecord::Schema.define(version: 2024_11_26_053757) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -67,6 +67,15 @@ ActiveRecord::Schema.define(version: 2024_11_21_154725) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.integer "room_id"
+    t.integer "user_id"
+    t.text "message"
+    t.boolean "is_young", default: true, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "noritu_favorites", force: :cascade do |t|
     t.integer "young_user_id"
     t.integer "noritu_post_id"
@@ -88,6 +97,21 @@ ActiveRecord::Schema.define(version: 2024_11_21_154725) do
   create_table "permits", force: :cascade do |t|
     t.integer "young_user_id"
     t.integer "group_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.integer "young_user_id"
+    t.integer "senior_user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "senior_messages", force: :cascade do |t|
+    t.integer "noritu_favorite_id"
+    t.integer "senior_user_id"
+    t.text "message"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -120,6 +144,14 @@ ActiveRecord::Schema.define(version: 2024_11_21_154725) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "young_user_id"
+  end
+
+  create_table "young_messages", force: :cascade do |t|
+    t.integer "noritu_favorite_id"
+    t.integer "young_user_id"
+    t.text "message"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "young_users", force: :cascade do |t|
