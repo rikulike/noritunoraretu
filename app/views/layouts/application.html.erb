@@ -11,84 +11,88 @@
   </head>
 
   <body>
-    <headder>
-      <nav class = "navbar navbar-expand-lg navbar-dark bg-info">
-        <div class= "container">
-          <%= link_to "NN", root_path, class: "text-light navbar-brand" %>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class= "collapse navbar-collapse" id= "navbarNavDropdown">
-            <ul class= "navbar-nav ml-auto">
-              <li>
-                <%= link_to homes_about_path, class: "nav-link text-light" do %>
-                  <i class="fa-solid fa-link"></i>About
+      <headder>
+        <nav class = "navbar navbar-expand-lg navbar-dark bg-info">
+          <div class= "container">
+            <%= link_to "NN", root_path, class: "text-light navbar-brand" %>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class= "collapse navbar-collapse" id= "navbarNavDropdown">
+              <ul class= "navbar-nav ml-auto">
+                <li>
+                  <%= link_to homes_about_path, class: "nav-link text-light" do %>
+                    <i class="fa-solid fa-link"></i>About
+                  <% end %>
+                </li>
+                <% if young_user_signed_in? && current_young_user.email != "guest@example.com" %>
+                  <li>
+                    <%= link_to young_user_path(current_young_user.id), class:"nav-link text-light" do %>
+                      <i class="fa-solid fa-house "></i>My page
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to destroy_young_user_session_path, method: :delete, class: "nav-link text-light" do %>
+                      <i class="fa-solid fa-right-from-bracket "></i>Log out
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to wisdom_posts_path, class:"nav-link text-light" do %>
+                      <i class="fa-solid fa-book-open "></i>Wisdoms
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to new_wisdom_post_path, class:"nav-link text-light" do %>
+                      <i class="fa-solid fa-plus"></i>New post
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to young_users_path, class: "nav-link text-light" do %>
+                      <i class="fa-solid fa-users "></i>Users
+                    <% end %>
+                  </li>
+                <% elsif young_user_signed_in? && current_young_user.email == "guest@example.com"%>
+                  <li>
+                    <%= link_to young_user_path(current_young_user.id), class:"nav-link text-light" do %>
+                      <i class="fa-solid fa-house "></i>My page
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to destroy_young_user_session_path, method: :delete, class: "nav-link text-light" do %>
+                      <i class="fa-solid fa-right-from-bracket "></i>Log out
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to wisdom_posts_path, class:"nav-link text-light" do %>
+                      <i class="fa-solid fa-book-open "></i>Wisdoms
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to young_users_path, class: "nav-link text-light" do %>
+                      <i class="fa-solid fa-users "></i>Users
+                    <% end %>
+                  </li>
+                <% elsif senior_user_signed_in? %>
+                  <li>
+                    <%= link_to "ログアウト", destroy_senior_user_session_path, method: :delete, class:"nav-link text-light" %>
+                  </li>
+                <% else %>
+                  <li>
+                    <%= link_to young_homes_top_path, class:"nav-link text-light" do  %>
+                      <i class="fa-solid fa-user-plus"></i>ヤングページ
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to senior_homes_top_path, class:"nav-link text-light" do  %>
+                      <i class="fa-solid fa-door-open"></i>シニアページ
+                    <% end %>
+                  </li>
                 <% end %>
-              </li>
-              <% if young_user_signed_in? && current_young_user.email != "guest@example.com" %>
-                <li>
-                  <%= link_to young_user_path(current_young_user.id), class:"nav-link text-light" do %>
-                    <i class="fa-solid fa-house "></i>My page
-                  <% end %>
-                </li>
-                <li>
-                  <%= link_to destroy_young_user_session_path, method: :delete, class: "nav-link text-light" do %>
-                    <i class="fa-solid fa-right-from-bracket "></i>Log out
-                  <% end %>
-                </li>
-                <li>
-                  <%= link_to wisdom_posts_path, class:"nav-link text-light" do %>
-                    <i class="fa-solid fa-book-open "></i>Wisdoms
-                  <% end %>
-                </li>
-                <li>
-                  <%= link_to new_wisdom_post_path, class:"nav-link text-light" do %>
-                    <i class="fa-solid fa-plus"></i>New post
-                  <% end %>
-                </li>
-                <li>
-                  <%= link_to young_users_path, class: "nav-link text-light" do %>
-                    <i class="fa-solid fa-users "></i>Users
-                  <% end %>
-                </li>
-              <% elsif young_user_signed_in? && current_young_user.email == "guest@example.com"%>
-                <li>
-                  <%= link_to young_user_path(current_young_user.id), class:"nav-link text-light" do %>
-                    <i class="fa-solid fa-house "></i>My page
-                  <% end %>
-                </li>
-                <li>
-                  <%= link_to destroy_young_user_session_path, method: :delete, class: "nav-link text-light" do %>
-                    <i class="fa-solid fa-right-from-bracket "></i>Log out
-                  <% end %>
-                </li>
-                <li>
-                  <%= link_to wisdom_posts_path, class:"nav-link text-light" do %>
-                    <i class="fa-solid fa-book-open "></i>Wisdoms
-                  <% end %>
-                </li>
-                <li>
-                  <%= link_to young_users_path, class: "nav-link text-light" do %>
-                    <i class="fa-solid fa-users "></i>Users
-                  <% end %>
-                </li>
-              <% else %>
-                <li>
-                  <%= link_to new_young_user_registration_path, class:"nav-link text-light" do  %>
-                    <i class="fa-solid fa-user-plus"></i>新規登録
-                  <% end %>
-                </li>
-                <li>
-                  <%= link_to new_young_user_session_path, class:"nav-link text-light" do  %>
-                    <i class="fa-solid fa-door-open"></i>Log in
-                  <% end %>
-                </li>
-              <% end %>
-            </ul>
+              </ul>
+            </div>
           </div>
-        </div>
-      </nav>
-    </headder>
+        </nav>
+      </headder>
     <%= yield %>
     <footer>
       <div class="container mt-5">

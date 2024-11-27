@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Senior::ConfirmationsController < Devise::ConfirmationsController
-  layout 'senior'
+  
   # GET /resource/confirmation/new
   # def new
   #   super

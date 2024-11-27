@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :senior_users, only:[:show, :edit, :update, :destroy]
     resources :young_users, only:[:show]
     get 'homes/about'
+    get 'homes/top'
   end
 
   namespace :young do
@@ -19,6 +20,7 @@ Rails.application.routes.draw do
    end
    resources :group_users, only: [:create, :destroy]
    get 'homes/about'
+   get 'homes/top'
    resources :noritu_posts, only: [:index, :show]
   end
 

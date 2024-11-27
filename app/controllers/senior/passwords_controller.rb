@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Senior::PasswordsController < Devise::PasswordsController
-  layout 'senior'
+
   # GET /resource/password/new
   # def new
   #   super

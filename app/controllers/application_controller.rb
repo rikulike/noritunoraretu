@@ -8,13 +8,13 @@ class ApplicationController < ActionController::Base
     if resources.class == YoungUser
       if senior_user_signed_in?
         sign_out(current_senior_user)
-      end 
-      young_homes_about_path
+      end
+      young_user_path(current_young_user)
     elsif resources.class == SeniorUser
       if young_user_signed_in?
         sign_out(current_young_user)
-      end 
-      senior_homes_about_path
+      end
+      senior_senior_user_path(current_senior_user)
     else
       root_path
     end
@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
 
 
   protected
-  
+
   def is_not_guest_young_user
     young_user = current_young_user
     unless young_user.email != "guest@example.com"

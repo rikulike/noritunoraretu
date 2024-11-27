@@ -1,5 +1,4 @@
 class Senior::NorituPostsController < ApplicationController
-  layout 'senior'
   before_action :authenticate_senior_user!
   before_action :is_noritu_post_author, only: [:edit, :update, :destroy, :show]
 
