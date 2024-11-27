@@ -8,9 +8,41 @@ DM画面
   </ul>
 <% end %>
 
-<% @messages.each do |m| %>
-<%= m.message %>
+
+<% if young_user_signed_in? %>
+  <h2><%= @senior_user.name %>さんとのトークルーム</h2>
+  <div class= "message" style= "width: 400px;">
+    <% @messages.each do |message| %>
+      <% if message.is_young == true %>
+        <div class= "right-container d-flex justify-content-end">
+          <p style="background-color: rgba(0, 185, 0, 0.6); padding: 5px; border-radius: 10px;"><%= message.message %></p>
+        </div>
+      <% else %>
+        <div class="left-container d-flex">
+          <%= image_tag @senior_user.get_profile_image(100,100), size: '30x30', style: 'border-radius: 50%' %>
+          <p class=ml-1 style="text-align: left;"><span style="background-color: #F5F5DC; padding: 5px; border-radius: 10px;"><%= message.message %></span></p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+<% else %>
+  <h2><%= @young_user.name %>さんとのトークルーム</h2>
+  <div class= "message" style= "width: 400px;">
+    <% @messages.each do |message| %>
+      <% if message.is_young == false %>
+        <div class= "right-container d-flex justify-content-end">
+          <p style="background-color: rgba(0, 185, 0, 0.6); padding: 5px; border-radius: 10px;"><%= message.message %></p>
+        </div>
+      <% else %>
+        <div class="left-container d-flex">
+          <%= image_tag @young_user.get_profile_image(100,100), size: '30x30', style: 'border-radius: 50%' %>
+          <p class=ml-1 style="text-align: left;"><span style="background-color: #F5F5DC; padding: 5px; border-radius: 10px;"><%= message.message %></span></p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
 <% end %>
+
 
 <%= form_with model: @message do |f| %>
   <%= f.text_field :message, placeholder: "メッセージを入力してください", autocomplete: "off" %>
