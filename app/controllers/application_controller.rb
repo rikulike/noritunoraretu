@@ -6,8 +6,14 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resources)
     if resources.class == YoungUser
+      if senior_user_signed_in?
+        sign_out(current_senior_user)
+      end 
       young_homes_about_path
     elsif resources.class == SeniorUser
+      if young_user_signed_in?
+        sign_out(current_young_user)
+      end 
       senior_homes_about_path
     else
       root_path

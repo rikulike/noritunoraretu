@@ -8,7 +8,9 @@ class Young::NorituPostsController < ApplicationController
   
   def show 
     @noritu_post = NorituPost.find(params[:id])
+    @room= Room.find_by(senior_user_id: @noritu_post.senior_user.id, young_user_id: current_young_user.id)
     render 'senior/noritu_posts/show'
+    
   end 
   
 
