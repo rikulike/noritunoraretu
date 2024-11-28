@@ -21,10 +21,9 @@
   <%= link_to "DM画面へ", room_path(@room.id) %>
 <% elsif current_senior_user == @noritu_post.senior_user %>
   <%= @noritu_post.noritu_favorites.count %>いいね
-  <% @noritu_favorite_young_users.each do |young_user| %>
-    <%= link_to senior_young_user_path(young_user.id) do %>
-      <%= young_user.name %>
-    <% end %>
+  <% @noritu_favorites.each do |noritu_favorite| %>
+      <%= noritu_favorite.young_user.name %>
+    <%= link_to "DM画面へ", room_path(noritu_favorite.room.id) %>
   <% end %>
 <% else %>
   <p>
