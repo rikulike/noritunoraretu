@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   end
   namespace :senior do
     resources :noritu_posts, only:[:new, :show, :edit, :create, :update, :destroy] do 
-      resource :noritu_favorite, only: [:create, :destroy]
+      resources :noritu_favorite, only: [:create, :destroy]
       end 
     resources :senior_users, only:[:show, :edit, :update, :destroy]
     resources :young_users, only:[:show]

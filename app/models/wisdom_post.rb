@@ -2,6 +2,7 @@ class WisdomPost < ApplicationRecord
   has_one_attached :wisdom_post_image
   belongs_to :young_user  
   has_many :wisdom_post_comments, dependent: :destroy
+  has_many :rooms, dependent: :destroy
   validates :title, presence: true
   validates :body, presence: true
   
