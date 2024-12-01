@@ -51,6 +51,11 @@
                       <i class="fa-solid fa-users "></i>Users
                     <% end %>
                   </li>
+                  <li>
+                    <%= link_to young_noritu_posts_path, class: "nav-link text-light" do %>
+                      <i class="fa-solid fa-users "></i>NN
+                    <% end %>
+                  </li>
                 <% elsif young_user_signed_in? && current_young_user.email == "guest@example.com"%>
                   <li>
                     <%= link_to young_user_path(current_young_user.id), class:"nav-link text-light" do %>

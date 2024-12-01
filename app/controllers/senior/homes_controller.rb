@@ -1,5 +1,5 @@
 class Senior::HomesController < ApplicationController
-
+layout 'noritunoraretu', except: :top
   
   def about 
   end 

@@ -1,15 +1,17 @@
 Rails.application.routes.draw do
 
   namespace :senior do
-    
+
   end
   namespace :senior do
-    resources :noritu_posts, only:[:new, :show, :edit, :create, :update, :destroy] do 
+    resources :noritu_posts, only:[:new, :show, :edit, :create, :update, :destroy] do
       resource :noritu_favorite, only: [:create, :destroy]
-      end 
+      end
     resources :senior_users, only:[:show, :edit, :update, :destroy]
     get 'homes/about'
     get 'homes/top'
+    get 'noritu_favorites/index'
+
   end
 
   namespace :young do
@@ -61,11 +63,11 @@ Rails.application.routes.draw do
 
   root to: 'homes#top'
   get 'homes/about'
-  
+
   resources :messages, only: [:create]
   resources :rooms, only: [:show]
-  
-  
+
+
 
   devise_for :senior_users, controllers:{
     confirmations: 'senior/confirmations',

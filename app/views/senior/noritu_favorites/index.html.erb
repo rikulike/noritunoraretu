@@ -1,0 +1,6 @@
+<h2>いいねした投稿一覧</h2>
+<% @noritu_favorites.each do |noritu_favorite| %>
+  <%= link_to young_noritu_post_path(noritu_favorite.noritu_post.id) do %>
+    <%= noritu_favorite.noritu_post.title %>
+  <% end %>
+<% end %>

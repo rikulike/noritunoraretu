@@ -1,6 +1,7 @@
 class Young::NorituPostsController < ApplicationController
   before_action :authenticate_young_user!
   before_action :is_not_guest_young_user
+  layout 'noritunoraretu'
 
   def index
     @noritu_posts = NorituPost.all
