@@ -18,6 +18,7 @@ class Senior::NorituPostsController < ApplicationController
   end
   def show
     @noritu_post= NorituPost.find(params[:id])
+    @senior_user= @noritu_post.senior_user
     @noritu_favorites = @noritu_post.noritu_favorites
   
 

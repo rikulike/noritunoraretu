@@ -1,20 +1,85 @@
-<div><%= image_tag @senior_user.get_profile_image(500,500) %></div>
-<div><%= @senior_user.name %></div>
-<div><%= @senior_user.introduction %></div>
-<% if current_senior_user == @senior_user %>
-  <%= link_to "編集", edit_senior_senior_user_path(@senior_user) %>
-  <%= link_to "退会", senior_senior_user_path(@senior_user), method: :delete %>
-<% end %>
-<h3>マイのりつ投稿一覧</h3>
-<% @noritu_posts.each do |noritu_post| %>
-  <h4>タイトル</h4>
-  <%= link_to senior_noritu_post_path(noritu_post) do %>
-    <%= noritu_post.title %>
-  <% end %>
-  <h4>日時</h4>
-  <%= noritu_post.datetime %>
-  <h4>出発地点</h4>
-  <%= noritu_post.current_location %>
-  <h4>目的地</h4>
-  <%= noritu_post.destination %>
-<% end %>
+
+<div class= "container">
+  <div class= "row">
+    <div class= "col-md-3">
+      <div class= "row">
+        <div class="col-12">
+          <div class= "row">
+            <div class= "col-4">
+              <%= image_tag @senior_user.get_profile_image(500,500), class: "side_bar_profile_image mt-3 rounded-circle"%>
+            </div>
+            <div class= "col-6 offset-2 d-flex align-items-center justify-content-center mt-3">
+              <h3><strong><%= @senior_user.name %></strong></h3>
+            </div>
+          </div>
+          <div class= "row">
+            <div class= "col-10 mt-2">
+             <h6><strong>紹介文</strong></h6>
+            </div>
+          </div>
+          <div class= "row">
+            <div class=" col-11 offset-1">
+              <%= @senior_user.introduction %>
+            </div>
+          </div>
+          <div class= "row ">
+            <% if @senior_user==current_senior_user %>
+              <%= link_to edit_senior_senior_user_path(current_senior_user.id),class:"btn btn-outline-secondary btn-block" do %>
+                <i class="fa-solid fa-user-gear"></i>
+              <% end %>
+            <% end %> 
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class= " card-list col-md-8 offset-md-1 mt-3">
+      <% @noritu_posts.each do |noritu_post| %>
+        <div class="card  mb-2">
+          <div class="card-header">
+            投稿日<%= noritu_post.created_at.strftime('%Y/%m/%d') %>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title"><%= noritu_post.title %></h5>
+            <p class="card-text"><%= noritu_post.body %></p>
+            <h5 class="go-to"><%= noritu_post.current_location %>→<%= noritu_post.destination %></h5>
+            <%= link_to "詳細へ", senior_noritu_post_path(noritu_post.id), class: "btn btn-primary" %>
+          </div>
+          <div class="card-footer text-muted">
+            <%= noritu_post.noritu_favorites.count %>件のいいね
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

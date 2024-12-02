@@ -1,0 +1,34 @@
+<h4>タイトル</h4>
+<%=@noritu_post.title %>
+<h4>説明文</h4>
+<%=@noritu_post.body %>
+<h4>日時</h4>
+<%= @noritu_post.datetime %>
+<h4>出発地点</h4>
+<%= @noritu_post.current_location %>
+<h4>目的地</h4>
+<%= @noritu_post.destination %>
+<% if @noritu_post.senior_user == current_senior_user %>
+  <%= link_to "編集", edit_senior_noritu_post_path(@noritu_post.id) %>
+<% end %>
+
+<% if young_user_signed_in? && @noritu_post.favorited_by?(current_young_user) %>
+  <p>
+    <%= link_to senior_noritu_post_noritu_favorite_path(@noritu_post), method: :delete do %>
+      ⚫︎<%= @noritu_post.noritu_favorites.count %>いいね
+    <% end %>
+  </p>
+  <%= link_to "DM画面へ", room_path(@room.id) %>
+<% elsif current_senior_user == @noritu_post.senior_user %>
+  <%= @noritu_post.noritu_favorites.count %>いいね
+  <% @noritu_favorites.each do |noritu_favorite| %>
+      <%= noritu_favorite.young_user.name %>
+    <%= link_to "DM画面へ", room_path(noritu_favorite.room.id) %>
+  <% end %>
+<% else %>
+  <p>
+    <%= link_to senior_noritu_post_noritu_favorite_path(@noritu_post), method: :post do %>
+      ◯<%= @noritu_post.noritu_favorites.count %>いいね
+    <% end %>
+  <% end %>
+  </p>
