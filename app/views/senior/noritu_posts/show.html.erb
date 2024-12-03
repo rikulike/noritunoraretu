@@ -1,32 +1,112 @@
-<h4>タイトル</h4>
-<%=@noritu_post.title %>
-<h4>説明文</h4>
-<%=@noritu_post.body %>
-<h4>日時</h4>
-<%= @noritu_post.datetime %>
-<h4>出発地点</h4>
-<%= @noritu_post.current_location %>
-<h4>目的地</h4>
-<%= @noritu_post.destination %>
-<% if @noritu_post.senior_user == current_senior_user %>
-  <%= link_to "編集", edit_senior_noritu_post_path(@noritu_post.id) %>
-<% end %>
+<div class= "container">
+  <div class= "row">
+    <div class= "col-md-3">
+      <div class= "row">
+        <div class="col-12">
+          <div class= "row">
+            <div class= "col-4">
+              <%= image_tag @senior_user.get_profile_image(500,500), class: "side_bar_profile_image mt-3 rounded-circle"%>
+            </div>
+            <div class= "col-6 offset-2 d-flex align-items-center justify-content-center mt-3">
+              <h3><strong><%= @senior_user.name %></strong></h3>
+            </div>
+          </div>
+          <div class= "row">
+            <div class= "col-10 mt-2">
+             <h6><strong>紹介文</strong></h6>
+            </div>
+          </div>
+          <div class= "row">
+            <div class=" col-11 offset-1">
+              <%= @senior_user.introduction %>
+            </div>
+          </div>
+          <div class= "row ">
+            <% if @senior_user==current_senior_user %>
+              <%= link_to edit_senior_senior_user_path(current_senior_user.id),class:"btn btn-outline-secondary btn-block" do %>
+                <i class="fa-solid fa-user-gear"></i>
+              <% end %>
+            <% end %> 
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class= "col-md-8 offset-md-1 mt-3">
+      <div class= "row">
+        <div class="col-12">
+          <div class="card  mb-2">
+            <div class="card-header">
+                投稿日<%= @noritu_post.created_at.strftime('%Y/%m/%d') %>
+                <% if @noritu_post.senior_user == current_senior_user %>
+                  <%= link_to "編集", edit_senior_noritu_post_path(@noritu_post.id) %>
+                <% end %>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title"><%= @noritu_post.title %></h5>
+              <p class="card-text"><%= @noritu_post.body %></p>
+              <p class= "card-text">出発希望日時:<%= @noritu_post.datetime.strftime('%Y/%m/%d %H:%M') %></p>
+              <h5 class="card-text"><%= @noritu_post.current_location %>→<%= @noritu_post.destination %></h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class= "row my-4">
+        <h5><strong><%= @noritu_favorites.count %>件のいいね</strong></h5>
+      </div>
+      <div class="row mt-3">
+        <% @noritu_favorites.each do |noritu_favorite| %>
 
-<% if young_user_signed_in? && @noritu_post.favorited_by?(current_young_user) %>
-  <p>
-    <%= link_to senior_noritu_post_noritu_favorite_path(@noritu_post), method: :delete do %>
-      ⚫︎<%= @noritu_post.noritu_favorites.count %>いいね
-    <% end %>
-  </p>
-<% elsif current_senior_user == @noritu_post.senior_user %>
-  <%= @noritu_post.noritu_favorites.count %>いいね
-  <% @noritu_favorite_young_users.each do |young_user| %>
-    <%= young_user.name %>
-  <% end %>
-<% else %>
-  <p>
-    <%= link_to senior_noritu_post_noritu_favorite_path(@noritu_post), method: :post do %>
-      ◯<%= @noritu_post.noritu_favorites.count %>いいね
-    <% end %>
-  </p>
-<% end %>
+          <div class="card mt-2 col-sm-6 col-md-4">
+            <div class= "row">
+              <div class= "col-12 text-center">
+                <%= image_tag noritu_favorite.young_user.get_profile_image(500,500),class: "young_user_index_profile_image rounded-circle  mt-3" %>
+              </div>
+            </div>
+            <div class="card-body ">
+              <h5 class="card-title text-center">
+                <%= link_to senior_young_user_path(noritu_favorite.young_user.id) do %>
+                  <%= noritu_favorite.young_user.name %>
+                <% end %>
+              </h5>
+              <p class="card-text young_user_index_introduction"><%= truncate(noritu_favorite.young_user.introduction, length: 30) %></p>
+            </div>
+            <div class= "card-footer text-center">
+              <div class= "text-body-secondary"> <%= link_to "DM画面へ", room_path(noritu_favorite.room.id) %></div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

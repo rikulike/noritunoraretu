@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Senior::UnlocksController < Devise::UnlocksController
-  layout 'senior'
   # GET /resource/unlock/new
   # def new
   #   super

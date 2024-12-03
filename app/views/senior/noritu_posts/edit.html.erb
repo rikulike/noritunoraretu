@@ -7,18 +7,43 @@
   </ul>
 <% end %>
 
-<%= form_with model: @noritu_post, url: senior_noritu_post_path(@noritu_post), method: :patch do |f| %>
-  <h4>タイトル</h4>
-  <%= f.text_field :title %>
-  <h4>説明文</h4>
-  <%= f.text_area :body %>
-  <h4>日時</h4>
-  <%= f.datetime_field :datetime %>
-  <h4>現在地</h4>
-  <%= f.text_area :current_location %>
-  <h3>↓</h3>
-  <h4>目的地</h4>
-  <%= f.text_area :destination %>
-  <%= f.submit "変更" %>
-<% end %>
-<%= link_to "削除", senior_noritu_post_path(@noritu_post), method: :delete %>
+<div class= "container">
+  <div class= "row">
+    <div class= "col-sm-12 col-md-8 col-lg-5 px-sm-0 mx-auto">
+      <h2>投稿編集</h2>
+      <%= form_with model: @noritu_post, url: senior_noritu_post_path(@noritu_post), method: :patch do |f| %>
+        <div class= "form-group">
+          <label for= "noritu_post_title">タイトル</label>
+          <div>
+            <%= f.text_field :title %>
+          </div>
+          <label for= "noritu_post_body">説明文</label>
+          <div>
+            <%= f.text_area :body %>
+          </div>
+          <label for= "noritu_post_datetime">希望日時</label>
+          <div>
+            <%= f.datetime_field :datetime %>
+          </div>
+          <label for= "noritu_post_current_location">現在地</label>
+          <div>
+            <%= f.text_area :current_location %>
+          </div>
+          <h4>↓</h4>
+          <label for= "noritu_post_destination">目的地</label>
+          <div>
+            <%= f.text_area :destination %>
+          </div>
+        </div>
+        <div>
+          <%= f.submit "変更", class: "btn btn-success form-group" %>
+          <%= link_to "削除", senior_noritu_post_path(@noritu_post), method: :delete %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+
+

@@ -1,0 +1,63 @@
+<div class= "container">
+  <div class= "col-6 offseet-2 row">
+    <% if @message.errors.any? %>
+      <%= @message.errors.count %>件のエラーが発生しました %>
+      <ul>
+        <% @message.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+  <div class= "row">
+    <div class="col-xl-6 offset-xl-3 col-sm-12">
+      <% if young_user_signed_in? %>
+        <h4><%= @senior_user.name %>さんとのトークルーム</h4>
+        <div class= "message" style= "width: 400px;">
+          <% @messages.each do |message| %>
+            <% if message.is_young == true %>
+              <div class= "right-container d-flex justify-content-end">
+                <p style="background-color: rgba(0, 185, 0, 0.6); padding: 5px; border-radius: 10px;"><%= message.message %></p>
+              </div>
+            <% else %>
+              <div class="left-container d-flex">
+                <%= image_tag @senior_user.get_profile_image(100,100), size: '30x30', style: 'border-radius: 50%' %>
+                <p class=ml-1 style="text-align: left;"><span style="background-color: #F5F5DC; padding: 5px; border-radius: 10px;"><%= message.message %></span></p>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      <% else %>
+        <h4><%= @young_user.name %>さんとのトークルーム</h4>
+        <div class= "message" style= "width: 400px;">
+          <% @messages.each do |message| %>
+            <% if message.is_young == false %>
+              <div class= "right-container d-flex justify-content-end">
+                <p style="background-color: rgba(0, 185, 0, 0.6); padding: 5px; border-radius: 10px;"><%= message.message %></p>
+              </div>
+            <% else %>
+              <div class="left-container d-flex">
+                <%= image_tag @young_user.get_profile_image(100,100), size: '30x30', style: 'border-radius: 50%' %>
+                <p class=ml-1 style="text-align: left;"><span style="background-color: #F5F5DC; padding: 5px; border-radius: 10px;"><%= message.message %></span></p>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+      <div class="mx-auto">
+        <%= form_with model: @message do |f| %>
+          <%= f.text_area :message, rows: '2', cols:'50%', placeholder: "メッセージを入力してください", autocomplete: "off" %>
+          <%= f.hidden_field :room_id, value: @room.id %>
+          <%= f.submit "送信" %>
+        <% end %>
+      </div>
+      <% if senior_user_signed_in? %>
+        <%= link_to "前のページへ", senior_noritu_post_path(@room.noritu_favorite.noritu_post.id)%>
+      <% else %>
+        <%= link_to "前のページへ", young_noritu_post_path(@room.noritu_favorite.noritu_post.id) %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+

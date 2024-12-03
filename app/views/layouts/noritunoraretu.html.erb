@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Noritunoraretu</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <script src="https://kit.fontawesome.com/5fb2cd06c3.js" crossorigin="anonymous"></script>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <headder>
+      <nav class = "navbar navbar-expand-lg navbar-dark bg-warning">
+        <div class= "container">
+          <% if young_user_signed_in? %>
+            <%= link_to "NN", young_noritu_posts_path, class: "text-light navbar-brand" %>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class= "collapse navbar-collapse" id= "navbarNavDropdown">
+              <ul class= "navbar-nav ml-auto">
+                <li>
+                  <%= link_to senior_noritu_favorites_index_path, class: "nav-link text-light" do %>
+                    <i class="fa-solid fa-thumbs-up"></i>いいね
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to young_user_path(current_young_user.id), class:"nav-link text-light" do %>
+                    <i class="fa-solid fa-book-open "></i>WPへ
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to destroy_young_user_session_path, method: :delete, class: "nav-link text-light" do %>
+                    <i class="fa-solid fa-right-from-bracket "></i>Log out
+                  <% end %>
+                </li>
+              </ul>
+            </div>
+          <% else %>
+            <%= link_to "NN",senior_senior_user_path(current_senior_user), class: "text-light navbar-brand" %>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class= "collapse navbar-collapse" id= "navbarNavDropdown">
+              <ul class= "navbar-nav ml-auto">
+                <li>
+                  <%= link_to senior_homes_about_path, class: "nav-link text-light" do %>
+                    <i class="fa-solid fa-link"></i>About
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to senior_senior_user_path(current_senior_user.id), class: "nav-link text-light" do %>
+                    <i class="fa-solid fa-user"></i>マイページ
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to new_senior_noritu_post_path, class: "nav-link text-light" do %>
+                    <i class="fa-solid fa-pen"></i>新規投稿
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to destroy_senior_user_session_path, method: :delete, class: "nav-link text-light" do %>
+                    <i class="fa-solid fa-right-from-bracket "></i>Log out
+                  <% end %>
+                </li>
+              </ul>
+            </div>
+          <% end %>
+        </div>
+      </nav>
+    </headder>
+    <%= yield %>
+    <footer>
+      <div class="container mt-5">
+        <div class ="row">
+          <div class="mx-auto">
+            <p>CopyRight Riku Takayama</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

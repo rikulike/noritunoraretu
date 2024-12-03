@@ -1,6 +1,8 @@
 class Senior::HomesController < ApplicationController
-  layout 'senior'
-  before_action :authenticate_senior_user!
+layout 'noritunoraretu', except: :top
+  
   def about 
+  end 
+  def top 
   end 
 end

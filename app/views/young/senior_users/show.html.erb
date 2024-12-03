@@ -1,0 +1,22 @@
+<div class= "container">
+  <div class= "row">
+    <div class= "card col-6 offset-3 mt-4">
+      <div class= "row">
+        <div class= "col-12 text-center">
+          <%= image_tag @senior_user.get_profile_image(1000,1000),class: "senior_user_index_profile_image rounded-circle  mt-3" %>
+        </div>
+      </div>
+      <div class="card-body ">
+        <h5 class="card-title text-center">
+          <%= @senior_user.name %>
+        </h5>
+        <p class="card-text young_user_index_introduction"><%= @senior_user.introduction %></p>
+      </div>
+    </div>
+  </div>
+  <div class= "row">
+    <div class= "col-6 offset-3 mt-2">
+      <%= link_to "投稿一覧へもどる", young_noritu_posts_path %>
+    </div>
+  </div>
+</div>

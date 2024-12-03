@@ -1,11 +1,17 @@
 Rails.application.routes.draw do
 
+  
+    
+
   namespace :senior do
-    resources :noritu_posts, only:[:new, :show, :edit, :create, :update, :destroy] do 
+    resources :noritu_posts, only:[:new, :show, :edit, :create, :update, :destroy] do
       resource :noritu_favorite, only: [:create, :destroy]
-      end 
+      end
     resources :senior_users, only:[:show, :edit, :update, :destroy]
+    resources :young_users, only:[:show]
     get 'homes/about'
+    get 'homes/top'
+    get 'noritu_favorites/index'
   end
 
   namespace :young do
@@ -15,6 +21,7 @@ Rails.application.routes.draw do
    end
    resources :group_users, only: [:create, :destroy]
    get 'homes/about'
+   get 'homes/top'
    resources :noritu_posts, only: [:index, :show]
   end
 
@@ -39,7 +46,14 @@ Rails.application.routes.draw do
     sessions: 'young/sessions',
     unlocks: 'young/unlocks'
      }
-
+     
+   devise_for :senior_users, controllers:{
+      confirmations: 'senior/confirmations',
+      passwords:  'senior/passwords',
+      registrations: 'senior/registrations',
+      sessions: 'senior/sessions',
+      unlocks: 'senior/unlocks'
+    }
 
    devise_scope :young_user do
     post "young_users/guest_sign_in", to: "young/sessions#guest_sign_in"
@@ -52,19 +66,18 @@ Rails.application.routes.draw do
     end
     resources :young_users, only: [:index, :show, :edit, :update, :destroy]
     get '/search', to: 'searches#search'
+    resources :senior_users, only: [:show]
   end
 
   root to: 'homes#top'
   get 'homes/about'
 
+  resources :messages, only: [:create]
+  resources :rooms, only: [:show]
 
-  devise_for :senior_users, controllers:{
-    confirmations: 'senior/confirmations',
-    passwords:  'senior/passwords',
-    registrations: 'senior/registrations',
-    sessions: 'senior/sessions',
-    unlocks: 'senior/unlocks'
-  }
+
+
+ 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
 

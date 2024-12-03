@@ -1,7 +1,7 @@
 class Senior::NorituPostsController < ApplicationController
-  layout 'senior'
   before_action :authenticate_senior_user!
   before_action :is_noritu_post_author, only: [:edit, :update, :destroy, :show]
+  layout 'noritunoraretu'
 
   def new
     @noritu_post= NorituPost.new
@@ -18,7 +18,9 @@ class Senior::NorituPostsController < ApplicationController
   end
   def show
     @noritu_post= NorituPost.find(params[:id])
-    @noritu_favorite_young_users = @noritu_post.young_users
+    @senior_user= @noritu_post.senior_user
+    @noritu_favorites = @noritu_post.noritu_favorites
+  
 
   end
 
