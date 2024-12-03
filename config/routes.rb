@@ -46,7 +46,14 @@ Rails.application.routes.draw do
     sessions: 'young/sessions',
     unlocks: 'young/unlocks'
      }
-
+     
+   devise_for :senior_users, controllers:{
+      confirmations: 'senior/confirmations',
+      passwords:  'senior/passwords',
+      registrations: 'senior/registrations',
+      sessions: 'senior/sessions',
+      unlocks: 'senior/unlocks'
+    }
 
    devise_scope :young_user do
     post "young_users/guest_sign_in", to: "young/sessions#guest_sign_in"
@@ -70,13 +77,7 @@ Rails.application.routes.draw do
 
 
 
-  devise_for :senior_users, controllers:{
-    confirmations: 'senior/confirmations',
-    passwords:  'senior/passwords',
-    registrations: 'senior/registrations',
-    sessions: 'senior/sessions',
-    unlocks: 'senior/unlocks'
-  }
+ 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
 
