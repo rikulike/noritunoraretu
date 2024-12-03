@@ -44,7 +44,8 @@
             <div class="card-body">
               <h5 class="card-title"><%= @noritu_post.title %></h5>
               <p class="card-text"><%= @noritu_post.body %></p>
-              <h5 class="go-to"><%= @noritu_post.current_location %>→<%= @noritu_post.destination %></h5>
+              <p class= "card-text">出発希望日時:<%= @noritu_post.datetime.strftime('%Y/%m/%d %H:%M') %></p>
+              <h5 class="card-text"><%= @noritu_post.current_location %>→<%= @noritu_post.destination %></h5>
             </div>
           </div>
         </div>

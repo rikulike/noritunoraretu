@@ -1,6 +1,37 @@
-<h2>いいねした投稿一覧</h2>
-<% @noritu_favorites.each do |noritu_favorite| %>
-  <%= link_to young_noritu_post_path(noritu_favorite.noritu_post.id) do %>
-    <%= noritu_favorite.noritu_post.title %>
-  <% end %>
-<% end %>
+<div class= "container">
+  <h2>いいねした投稿一覧</h2>
+  <div class="row no-gutters mt-3">
+    <% @noritu_favorites.each do |noritu_favorite| %>
+      <div class="col-10 card mb-3 mx-auto">
+        <div class= "row">
+          <div class="col-md-4 text-center ">
+            <%= link_to young_noritu_post_path(noritu_favorite.noritu_post) do %>
+              <%= image_tag noritu_favorite.noritu_post.senior_user.get_profile_image(1000,1000), class: "card-img-top noritu_index_image rounded-circle m-2" %>
+            <% end %>
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">
+                <%= link_to young_noritu_post_path(noritu_favorite.noritu_post) do %>
+                  <%= noritu_favorite.noritu_post.title %>
+                <% end %>
+              </h5>
+              <p class="card-text"><%= noritu_favorite.noritu_post.datetime.strftime('%y/%m/%d') %></p>
+              <p class="card-text"><%= truncate(noritu_favorite.noritu_post.body, length: 50) %></p>
+              <p class= "card-text">出発希望日時:<%= noritu_favorite.noritu_post.datetime.strftime('%Y/%m/%d %H:%M') %></p>
+              <p class="card-text"><%= noritu_favorite.noritu_post.current_location %>→<%= noritu_favorite.noritu_post.destination %></p>
+              <p class="card-text"><small class="text-muted"><%= noritu_favorite.noritu_post.noritu_favorites.count %>人がいいね</small></p>
+            </div>
+          </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
+
+
+
+
+
+
+

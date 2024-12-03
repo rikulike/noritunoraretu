@@ -51,7 +51,11 @@
           <%= f.submit "送信" %>
         <% end %>
       </div>
-      <%= link_to "前のページへ", :back %>
+      <% if senior_user_signed_in? %>
+        <%= link_to "前のページへ", senior_noritu_post_path(@room.noritu_favorite.noritu_post.id)%>
+      <% else %>
+        <%= link_to "前のページへ", young_noritu_post_path(@room.noritu_favorite.noritu_post.id) %>
+      <% end %>
     </div>
   </div>
 </div>

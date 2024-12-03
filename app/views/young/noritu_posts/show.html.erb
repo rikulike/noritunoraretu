@@ -1,34 +1,45 @@
-<h4>タイトル</h4>
-<%=@noritu_post.title %>
-<h4>説明文</h4>
-<%=@noritu_post.body %>
-<h4>日時</h4>
-<%= @noritu_post.datetime %>
-<h4>出発地点</h4>
-<%= @noritu_post.current_location %>
-<h4>目的地</h4>
-<%= @noritu_post.destination %>
-<% if @noritu_post.senior_user == current_senior_user %>
-  <%= link_to "編集", edit_senior_noritu_post_path(@noritu_post.id) %>
-<% end %>
+<div class= "container">
+  <div class="row no-gutters mt-3">
+    <div class="col-10 card mb-3 mx-auto">
+      <div class= "row">
+        <div class="col-md-4 text-center ">
+            <%= image_tag @noritu_post.senior_user.get_profile_image(1000,1000), class: "card-img-top noritu_index_image rounded-circle m-2" %>
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">
+              <%= link_to young_noritu_post_path(@noritu_post) do %>
+                <%= @noritu_post.title %>
+              <% end %>
+            </h5>
+            <p class="card-text"><%= @noritu_post.datetime.strftime('%y/%m/%d') %></p>
+            <p class="card-text"><%= @noritu_post.body %></p>
+            <p class= "card-text">出発希望日時:<%= @noritu_post.datetime.strftime('%Y/%m/%d %H:%M') %></p>
+            <p class="card-text"><%= @noritu_post.current_location %>→<%= @noritu_post.destination %></p>
+            <% if @noritu_post.favorited_by?(current_young_user) %>
+              <p>
+                <%= link_to senior_noritu_post_noritu_favorite_path(@noritu_post), method: :delete do %>
+                  ⚫︎<%= @noritu_post.noritu_favorites.count %>いいね
+                <% end %>
+              </p>
+              <%= link_to "DM画面へ", room_path(@room.id) %>
+            <% else %>
+              <p>
+                <%= link_to senior_noritu_post_noritu_favorite_path(@noritu_post), method: :post do %>
+                  ◯<%= @noritu_post.noritu_favorites.count %>いいね
+                <% end %>
+              </p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-<% if young_user_signed_in? && @noritu_post.favorited_by?(current_young_user) %>
-  <p>
-    <%= link_to senior_noritu_post_noritu_favorite_path(@noritu_post), method: :delete do %>
-      ⚫︎<%= @noritu_post.noritu_favorites.count %>いいね
-    <% end %>
-  </p>
-  <%= link_to "DM画面へ", room_path(@room.id) %>
-<% elsif current_senior_user == @noritu_post.senior_user %>
-  <%= @noritu_post.noritu_favorites.count %>いいね
-  <% @noritu_favorites.each do |noritu_favorite| %>
-      <%= noritu_favorite.young_user.name %>
-    <%= link_to "DM画面へ", room_path(noritu_favorite.room.id) %>
-  <% end %>
-<% else %>
-  <p>
-    <%= link_to senior_noritu_post_noritu_favorite_path(@noritu_post), method: :post do %>
-      ◯<%= @noritu_post.noritu_favorites.count %>いいね
-    <% end %>
-  <% end %>
-  </p>
+
+
+
+
+
+
