@@ -59,6 +59,7 @@ Rails.application.routes.draw do
     end
     resources :young_users, only: [:index, :show, :edit, :update, :destroy]
     get '/search', to: 'searches#search'
+    resources :senior_users, only: [:show]
   end
 
   root to: 'homes#top'

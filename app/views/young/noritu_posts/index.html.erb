@@ -4,9 +4,16 @@
       <div class="col-10 card mb-3 mx-auto">
         <div class= "row">
           <div class="col-md-4 text-center ">
-            <%= link_to young_noritu_post_path(noritu_post) do %>
-              <%= image_tag noritu_post.senior_user.get_profile_image(1000,1000), class: "card-img-top noritu_index_image rounded-circle m-2" %>
-            <% end %>
+            <div>
+              <%= link_to senior_user_path(noritu_post.senior_user.id) do %>
+                <%= image_tag noritu_post.senior_user.get_profile_image(1000,1000), class: "card-img-top noritu_index_image rounded-circle m-2" %>
+              <% end %>
+            </div>
+            <div>
+              <%=link_to senior_user_path(noritu_post.senior_user.id) do %>
+                <p><%= noritu_post.senior_user.name %></p>
+              <% end %>
+            </div>
           </div>
           <div class="col-md-8">
             <div class="card-body">

@@ -8,6 +8,9 @@
             <%= link_to young_noritu_post_path(noritu_favorite.noritu_post) do %>
               <%= image_tag noritu_favorite.noritu_post.senior_user.get_profile_image(1000,1000), class: "card-img-top noritu_index_image rounded-circle m-2" %>
             <% end %>
+            <%=link_to senior_user_path(noritu_favorite.noritu_post.senior_user.id) do %>
+              <p><%= noritu_favorite.noritu_post.senior_user.name %></p>
+            <% end %>
           </div>
           <div class="col-md-8">
             <div class="card-body">
