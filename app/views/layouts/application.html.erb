@@ -14,26 +14,21 @@
       <headder>
         <nav class = "navbar navbar-expand-lg navbar-dark bg-info">
           <div class= "container">
-            <%= link_to "NN", root_path, class: "text-light navbar-brand" %>
+            <%= link_to "WP", root_path, class: "text-light navbar-brand" %>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class= "collapse navbar-collapse" id= "navbarNavDropdown">
               <ul class= "navbar-nav ml-auto">
-                <li>
-                  <%= link_to homes_about_path, class: "nav-link text-light" do %>
-                    <i class="fa-solid fa-link"></i>About
-                  <% end %>
-                </li>
                 <% if young_user_signed_in? && current_young_user.email != "guest@example.com" %>
                   <li>
-                    <%= link_to young_user_path(current_young_user.id), class:"nav-link text-light" do %>
-                      <i class="fa-solid fa-house "></i>My page
+                    <%= link_to young_homes_about_path, class: "nav-link text-light" do %>
+                      <i class="fa-solid fa-link"></i>About
                     <% end %>
                   </li>
                   <li>
-                    <%= link_to destroy_young_user_session_path, method: :delete, class: "nav-link text-light" do %>
-                      <i class="fa-solid fa-right-from-bracket "></i>Log out
+                    <%= link_to young_user_path(current_young_user.id), class:"nav-link text-light" do %>
+                      <i class="fa-solid fa-house "></i>My page
                     <% end %>
                   </li>
                   <li>
@@ -52,19 +47,24 @@
                     <% end %>
                   </li>
                   <li>
+                    <%= link_to destroy_young_user_session_path, method: :delete, class: "nav-link text-light" do %>
+                      <i class="fa-solid fa-right-from-bracket "></i>Log out
+                    <% end %>
+                  </li>
+                  <li>
                     <%= link_to young_noritu_posts_path, class: "nav-link text-light" do %>
-                      <i class="fa-solid fa-users "></i>NN
+                      <i class="fa-solid fa-car"></i>NNへ
                     <% end %>
                   </li>
                 <% elsif young_user_signed_in? && current_young_user.email == "guest@example.com"%>
+                <li>
+                  <%= link_to young_homes_about_path, class: "nav-link text-light" do %>
+                    <i class="fa-solid fa-link"></i>About
+                  <% end %>
+                </li>
                   <li>
                     <%= link_to young_user_path(current_young_user.id), class:"nav-link text-light" do %>
                       <i class="fa-solid fa-house "></i>My page
-                    <% end %>
-                  </li>
-                  <li>
-                    <%= link_to destroy_young_user_session_path, method: :delete, class: "nav-link text-light" do %>
-                      <i class="fa-solid fa-right-from-bracket "></i>Log out
                     <% end %>
                   </li>
                   <li>
@@ -77,19 +77,25 @@
                       <i class="fa-solid fa-users "></i>Users
                     <% end %>
                   </li>
-                <% elsif senior_user_signed_in? %>
                   <li>
-                    <%= link_to "ログアウト", destroy_senior_user_session_path, method: :delete, class:"nav-link text-light" %>
+                    <%= link_to destroy_young_user_session_path, method: :delete, class: "nav-link text-light" do %>
+                      <i class="fa-solid fa-right-from-bracket "></i>Log out
+                    <% end %>
                   </li>
                 <% else %>
+                <li>
+                  <%= link_to homes_about_path, class: "nav-link text-light" do %>
+                    <i class="fa-solid fa-link"></i>About
+                  <% end %>
+                </li>
                   <li>
                     <%= link_to young_homes_top_path, class:"nav-link text-light" do  %>
-                      <i class="fa-solid fa-user-plus"></i>ヤングページ
+                      <i class="fa-solid fa-user"></i>ヤングページ
                     <% end %>
                   </li>
                   <li>
                     <%= link_to senior_homes_top_path, class:"nav-link text-light" do  %>
-                      <i class="fa-solid fa-door-open"></i>シニアページ
+                      <i class="fa-regular fa-user"></i>シニアページ
                     <% end %>
                   </li>
                 <% end %>
