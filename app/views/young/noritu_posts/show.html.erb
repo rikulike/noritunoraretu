@@ -15,7 +15,6 @@
                 <%= @noritu_post.title %>
               <% end %>
             </h5>
-            <p class="card-text"><%= @noritu_post.datetime.strftime('%y/%m/%d') %></p>
             <p class="card-text"><%= @noritu_post.body %></p>
             <p class= "card-text">出発希望日時:<%= @noritu_post.datetime.strftime('%Y/%m/%d %H:%M') %></p>
             <p class="card-text"><%= @noritu_post.current_location %>→<%= @noritu_post.destination %></p>
