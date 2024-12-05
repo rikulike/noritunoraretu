@@ -1,5 +1,3 @@
-
-
 <% if @model == 'user' %>
   <div class="row mt-5">
     <div class= "col-8 offset-2">
@@ -48,7 +46,6 @@
         <%= @records.count %>件のヒット
       </div>
     </div>
-
     <% @records.each do |wisdom_post| %>
       <div class="card w-50 mx-auto mt-4 shadow-lg">
         <%= link_to wisdom_post_path(wisdom_post.id) do %>

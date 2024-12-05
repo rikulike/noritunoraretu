@@ -3,9 +3,9 @@ class Young::WisdomPostsController < ApplicationController
   before_action :authenticate_young_user!
 
 
-    def new
-      @wisdom_post_new= WisdomPost.new
-    end 
+  def new
+    @wisdom_post_new= WisdomPost.new
+  end 
   
   def create
     @wisdom_post_new= WisdomPost.new(wisdom_post_params)
@@ -63,8 +63,6 @@ class Young::WisdomPostsController < ApplicationController
       redirect_to wisdom_posts_path
     end 
   end 
-  
-
 
   def wisdom_post_params
     params.require(:wisdom_post).permit(:title, :body, :caption, :wisdom_post_image)

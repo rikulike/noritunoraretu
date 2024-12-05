@@ -1,5 +1,6 @@
 class MessagesController < ApplicationController
 layout 'noritunoraretu'
+
   def create
     @message = Message.new(message_params)
     if young_user_signed_in?

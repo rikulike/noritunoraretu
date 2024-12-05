@@ -16,15 +16,12 @@ class Senior::NorituPostsController < ApplicationController
     render :new
     end
   end
+  
   def show
     @noritu_post= NorituPost.find(params[:id])
     @senior_user= @noritu_post.senior_user
     @noritu_favorites = @noritu_post.noritu_favorites
-  
-
   end
-
-
 
   def edit
     @noritu_post = NorituPost.find(params[:id])
@@ -60,7 +57,5 @@ class Senior::NorituPostsController < ApplicationController
       redirect_to senior_senior_user_path(current_senior_user)
     end
   end
-
-
 
 end

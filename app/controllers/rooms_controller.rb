@@ -1,5 +1,7 @@
 class RoomsController < ApplicationController
 layout 'noritunoraretu'
+
+
   def show
     @room = Room.find(params[:id])
     @messages= @room.messages.all

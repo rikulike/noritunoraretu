@@ -30,8 +30,6 @@ class YoungUser < ApplicationRecord
     end
   end
 
-
-
   def self.search_for(content, method)
     if method == 'perfect'
       YoungUser.where(name: content)

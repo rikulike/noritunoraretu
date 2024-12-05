@@ -15,11 +15,7 @@ class Young::GroupsController < ApplicationController
     else 
       render :new
     end 
-    
   end
-
-
-
 
   def index
     @groups= Group.all
@@ -31,7 +27,6 @@ class Young::GroupsController < ApplicationController
 
   def edit
     @group= Group.find(params[:id])
-
   end
 
   def update
@@ -63,8 +58,6 @@ class Young::GroupsController < ApplicationController
       redirect_to young_groups_path
     end
   end
-
-
 
 end
 

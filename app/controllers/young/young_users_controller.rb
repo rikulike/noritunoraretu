@@ -55,6 +55,4 @@ class Young::YoungUsersController < ApplicationController
       redirect_to young_user_path(current_young_user), notice: "ゲストユーザーはプロフィール編集画面へ移行できません"
     end
   end
-
-
 end

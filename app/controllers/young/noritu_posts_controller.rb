@@ -13,7 +13,6 @@ class Young::NorituPostsController < ApplicationController
     unless noritu_favorite == nil
       @room= noritu_favorite.room
     end 
-
   end
 
 
