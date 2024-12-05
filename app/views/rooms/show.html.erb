@@ -1,7 +1,7 @@
 <div class= "container">
   <div class= "col-6 offseet-2 row">
     <% if @message.errors.any? %>
-      <%= @message.errors.count %>件のエラーが発生しました %>
+      <%= @message.errors.count %>件のエラーが発生しました
       <ul>
         <% @message.errors.full_messages.each do |message| %>
           <li><%= message %></li>
