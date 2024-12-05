@@ -62,3 +62,43 @@
   height: 160px;
   object-fit: cover;
 }
+
+.about-block-heading{
+  border-bottom: solid 3px #FFE100;
+  font-size: 30px;
+  line-height: 1.7;
+  margin: 2px;
+}
+
+.function-name{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.subheading{
+  font-size: 17px;
+  text-decoration:underline;
+}
+
+.subtitle{
+  font-size: 14px;
+  text-decoration:underline;
+
+}
+
+.user-type{
+  font-size: 18px;
+  font-weight: bold;  
+}
+
+.note{
+  font-size: 12px;
+}
+
+.annotation{
+  font-size: 40px;
+  color:#FF0000 ;
+}
+.textarea{
+  width:100px;
+}

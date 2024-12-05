@@ -1,6 +1,6 @@
 <div class= "container">
   <div class= "row">
-    <div class= "col-md-3">
+    <div class= "col-xl-3">
       <%= render 'young/young_users/young_user', young_user: @young_user %>
     </div>
     <div class= "col-md-8 offset-md-1">
@@ -80,21 +80,21 @@
             </div>
           <% end %>
         </div>
-        <div class= "row">
-          <% if @comment.errors.any? %>
+        <% if @comment.errors.any? %>
+          <div class= "row">
             <%= @comment.errors.count %>件のエラーが発生しました
             <ul>
               <% @comment.errors.full_messages.each do |message| %>
                 <li><%= message %></li>
               <% end %>
             </ul>
-          <% end %>
-        </div>
-       <div class= "row ">
-          <div class= "col-md-12 comment_post mx-auto">
+          </div>
+        <% end %>
+       <div class= "row mx-auto ">
+          <div class= "col-md-12 comment_post">
             <% unless current_young_user.email == "guest@example.com" %>
               <%= form_with model: [@wisdom_post,@comment] do |f| %>
-                <%= f.text_area :comment, rows: '5',cols:'70%', placeholder: "コメントをここに",class: "mt-2 mb-2" %>
+                <%= f.text_area :comment, rows: '3',cols:'54', placeholder: "コメントをここに",class: "mt-2 mb-2" %>
                 <%= f.submit "送信する",class:"btn btn-outline-info btn-block"%>
               <% end %>
             <% end %>
