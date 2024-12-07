@@ -4,7 +4,6 @@ Rails.application.routes.draw do
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
 
-
   namespace :senior do
     resources :noritu_posts, only:[:new, :show, :edit, :create, :update, :destroy] do
       resource :noritu_favorite, only: [:create, :destroy]
@@ -27,8 +26,6 @@ Rails.application.routes.draw do
    resources :noritu_posts, only: [:index, :show]
   end
 
-
-
   devise_for :admin, skip: [:registrations, :password], controllers: {
     sessions: 'admin/sessions'
   }
@@ -47,17 +44,17 @@ Rails.application.routes.draw do
     registrations: 'young/registrations',
     sessions: 'young/sessions',
     unlocks: 'young/unlocks'
-     }
+  }
 
-   devise_for :senior_users, controllers:{
-      confirmations: 'senior/confirmations',
-      passwords:  'senior/passwords',
-      registrations: 'senior/registrations',
-      sessions: 'senior/sessions',
-      unlocks: 'senior/unlocks'
-    }
+  devise_for :senior_users, controllers:{
+    confirmations: 'senior/confirmations',
+    passwords:  'senior/passwords',
+    registrations: 'senior/registrations',
+    sessions: 'senior/sessions',
+    unlocks: 'senior/unlocks'
+  }
 
-   devise_scope :young_user do
+  devise_scope :young_user do
     post "young_users/guest_sign_in", to: "young/sessions#guest_sign_in"
   end
 
@@ -76,9 +73,6 @@ Rails.application.routes.draw do
 
   resources :messages, only: [:create]
   resources :rooms, only: [:show]
-
-
-
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
