@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
-  
-    
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
+
 
   namespace :senior do
     resources :noritu_posts, only:[:new, :show, :edit, :create, :update, :destroy] do
@@ -46,7 +48,7 @@ Rails.application.routes.draw do
     sessions: 'young/sessions',
     unlocks: 'young/unlocks'
      }
-     
+
    devise_for :senior_users, controllers:{
       confirmations: 'senior/confirmations',
       passwords:  'senior/passwords',
@@ -77,7 +79,7 @@ Rails.application.routes.draw do
 
 
 
- 
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
 
