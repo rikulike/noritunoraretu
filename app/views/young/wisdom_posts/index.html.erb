@@ -10,7 +10,7 @@
     <h3>Wisdom Post一覧ページ</h3>
   </div>
   <div class= "row mt-5">
-    <% @wisdom_posts.each do |wisdom_post| %>
+    <% @wisdom_posts.order(created_at: :desc).each do |wisdom_post| %>
       <div class="card col-lg-3">
         <%= link_to wisdom_post_path(wisdom_post.id) do %>
         <div class= "row text-center ">

@@ -15,7 +15,7 @@
               <p class= "card-title">
                 <strong><i class="fa-solid fa-book-open"></i><span class= "text-dark"><%= @wisdom_post.title %></span></strong>
               </p>
-              <p class= "card-text"><%= @wisdom_post.body %></p>
+              <p class= "card-text"><%= simple_format(@wisdom_post.body, sanitize: true) %></p>
               <span>
                 <%= link_to young_user_path(@young_user.id), class: "text-dark" do %>
                   <i class="fa-solid fa-user"></i><%= @young_user.name %>
@@ -71,7 +71,7 @@
               </div>
               <div class= "col-2 d-flex align-items-center justify-content-center mt-2 mb-2">
                 <% if wisdom_post_comment.young_user == current_young_user %>
-                  <%=link_to wisdom_post_wisdom_post_comment_path(wisdom_post_comment.wisdom_post, wisdom_post_comment), method: :delete do %>
+                  <%=link_to wisdom_post_wisdom_post_comment_path(wisdom_post_comment.wisdom_post, wisdom_post_comment), method: :delete, data: {confirm: "削除しますか？"} do %>
                     削除
                   <% end %>
 

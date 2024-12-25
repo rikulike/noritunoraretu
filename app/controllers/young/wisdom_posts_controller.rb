@@ -20,7 +20,7 @@ class Young::WisdomPostsController < ApplicationController
 
   def index
     @young_user= current_young_user
-    @wisdom_posts= WisdomPost.all
+    @wisdom_posts= WisdomPost.all.order(created_at: :desc)
     @wisdom_post_new= WisdomPost.new
 
   end

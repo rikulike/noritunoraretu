@@ -19,7 +19,7 @@
           </div>
           <div class= "row">
             <div class=" col-11 offset-1">
-              <%= @senior_user.introduction %>
+              <%= simple_format(@senior_user.introduction, sanitize: true) %>
             </div>
           </div>
           <div class= "row ">
