@@ -10,7 +10,7 @@
         <h5 class="card-title text-center">
           <%= @young_user.name %>
         </h5>
-        <p class="card-text young_user_index_introduction"><%= @young_user.introduction %></p>
+        <p class="card-text young_user_index_introduction"><%= simple_format(@young_user.introduction, sanitize: true) %></p>
       </div>
     </div>
   </div>
