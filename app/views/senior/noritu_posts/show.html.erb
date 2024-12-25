@@ -18,7 +18,7 @@
           </div>
           <div class= "row">
             <div class=" col-11 offset-1">
-              <%= @senior_user.introduction %>
+              <%= simple_format(@senior_user.introduction, sanitize: true) %>
             </div>
           </div>
           <div class= "row ">
@@ -26,7 +26,7 @@
               <%= link_to edit_senior_senior_user_path(current_senior_user.id),class:"btn btn-outline-secondary btn-block" do %>
                 <i class="fa-solid fa-user-gear"></i>
               <% end %>
-            <% end %> 
+            <% end %>
           </div>
         </div>
       </div>
