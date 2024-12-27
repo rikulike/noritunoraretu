@@ -24,7 +24,7 @@
           </div>
           <label for= "noritu_post_datetime">希望日時</label>
           <div>
-            <%= f.datetime_field :datetime %>
+            <%= f.datetime_field :datetime, min: Date.current %>
           </div>
           <label for= "noritu_post_current_location">現在地</label>
           <div>
@@ -37,7 +37,7 @@
           </div>
         </div>
         <div>
-          <%= f.submit "投稿", class: "btn btn-success form-group" %>　
+          <%= f.submit "投稿", class: "btn btn-success form-group" %>
         </div>
       <% end %>
     </div>
