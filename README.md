@@ -37,9 +37,15 @@ https://docs.google.com/presentation/d/1uTABYlGi9B2rn8Glu8KZH_smStKCVKP3CpPDMvka
 
 ​
 ## 設計書
-後ほど作成予定
-
-​
+* UI Flows:  
+  https://drive.google.com/file/d/1D1NV01KrAVjn1HWRlft5p8NJbt3MPOPR/view?usp=sharing
+* ER図:  
+  https://drive.google.com/file/d/1GlEb0sqJhhNpQyBV_oDG5EW57cauZC9-/view?usp=sharing
+* テーブル定義書:  
+  https://docs.google.com/spreadsheets/d/1bufgrSof5Ib9RbIt24iGFyBuXAXQilKCNSYA9JQUAcY/edit?usp=sharing
+* アプリケーション詳細設計書:  
+  https://docs.google.com/spreadsheets/d/1SbuwYiRFVfTtGHsTuT0ekmlofUgKqwFUxDvD3o39jMA/edit?usp=sharing
+  
 ## 開発環境
 - OS：Linux(CentOS)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
