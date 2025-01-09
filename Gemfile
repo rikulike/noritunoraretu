@@ -66,3 +66,4 @@ gem "net-smtp"
 gem "net-pop"
 gem "net-imap"
 gem 'letter_opener_web'
+gem 'kaminari','~> 1.2.1'

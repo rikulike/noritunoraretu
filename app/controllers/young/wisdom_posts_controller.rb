@@ -5,8 +5,8 @@ class Young::WisdomPostsController < ApplicationController
 
   def new
     @wisdom_post_new= WisdomPost.new
-  end 
-  
+  end
+
   def create
     @wisdom_post_new= WisdomPost.new(wisdom_post_params)
     @wisdom_post_new.young_user_id= current_young_user.id
@@ -20,7 +20,7 @@ class Young::WisdomPostsController < ApplicationController
 
   def index
     @young_user= current_young_user
-    @wisdom_posts= WisdomPost.all.order(created_at: :desc)
+    @wisdom_posts= WisdomPost.all.order(created_at: :desc).page(params[:page]).per(8)
     @wisdom_post_new= WisdomPost.new
 
   end
@@ -30,7 +30,7 @@ class Young::WisdomPostsController < ApplicationController
     @wisdom_post= WisdomPost.find(params[:id])
     @young_user= @wisdom_post.young_user
     @comment= WisdomPostComment.new
-    
+
   end
 
   def edit
@@ -56,13 +56,13 @@ class Young::WisdomPostsController < ApplicationController
 
 
   private
-  
+
   def is_wisdom_post_author
     wisdom_post= WisdomPost.find(params[:id])
     unless wisdom_post.young_user.id == current_young_user.id
       redirect_to wisdom_posts_path
-    end 
-  end 
+    end
+  end
 
   def wisdom_post_params
     params.require(:wisdom_post).permit(:title, :body, :caption, :wisdom_post_image)
