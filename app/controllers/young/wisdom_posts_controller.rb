@@ -20,7 +20,7 @@ class Young::WisdomPostsController < ApplicationController
 
   def index
     @young_user= current_young_user
-    @wisdom_posts= WisdomPost.all.order(created_at: :desc).page(params[:page])
+    @wisdom_posts= WisdomPost.all.order(created_at: :desc).page(params[:page]).per(8)
     @wisdom_post_new= WisdomPost.new
 
   end

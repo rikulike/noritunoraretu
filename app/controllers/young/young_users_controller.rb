@@ -2,7 +2,7 @@ class Young::YoungUsersController < ApplicationController
   before_action :is_matching_login_young_user, only: [:edit, :update, :destroy]
   before_action :ensure_guest_young_user, only: [:edit, :update]
   before_action :authenticate_young_user!
-  
+
   def show
     @young_user= YoungUser.find(params[:id])
     @wisdom_posts= @young_user.wisdom_posts
@@ -30,7 +30,7 @@ class Young::YoungUsersController < ApplicationController
 
   def index
     @young_user= current_young_user
-    @young_users= YoungUser.all
+    @young_users= YoungUser.all.page(params[:page]).per(6)
     @wisdom_post_new= WisdomPost.new
   end
 
